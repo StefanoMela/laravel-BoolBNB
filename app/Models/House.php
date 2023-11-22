@@ -8,4 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class House extends Model
 {
     use HasFactory;
+
+    protected $fillable=['user_id', 'title','cover_image','description','rooms','sq_meters','beds','bathrooms','addres','longitude','latitude'];
+    
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+    public function views(){
+        return $this->hasMany(View::class);
+    }
+    public function galleries(){
+        return $this->hasMany(Gallery::class);
+    }
+
+    public function extras(){
+        return $this->belongsToMany(Extra::class);
+    }
+    public function sponsorships(){
+        return $this->belongsToMany(Sponsorship::class);
+    }
+    
+    
 }
