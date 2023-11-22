@@ -3,7 +3,7 @@
 return [
     'houses' => [
         [
-            'title' => 'Villa sul mare',
+            'title' => 'La Casa di Luce',
             'address' => 'Via del Mare, 00126 Roma',
             'latitude' => '41.79246',
             'longitude' => '12.38622',
@@ -11,12 +11,12 @@ return [
             'rooms' => 2,
             'bathrooms' => 1,
             'sq_meters' => 100,
-            'description' => 'Bellissima villa con piscina privata e vista sul mare',
+            'description' => 'Un\' accogliente dimora con ampie finestre che permettono alla luce naturale di riempire gli spazi, offrendo un ambiente luminoso e rilassante.',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Appartamento in centro',
+            'title' => 'Vista Mare Sereno',
             'address' => 'Piazza del Popolo, 00187 Roma',
             'latitude' => '41.91048',
             'longitude' => '12.47623',
@@ -24,11 +24,11 @@ return [
             'rooms' => 1,
             'bathrooms' => 1,
             'sq_meters' => 50,
-            'description' => 'Comodo appartamento in centro città',
+            'description' => 'Una casa affacciata sul mare con una vista mozzafiato che offre una quiete e serenità uniche, ideale per godersi tramonti indimenticabili.',
             'cover_image'=> 'https://placehold.co/600x400',
         ],
         [
-            'title' => 'Appartamento di lusso',
+            'title' => 'Rifugio Montano',
             'address' => 'Via Napoleone, 20121 Milano',
             'latitude' => '45.46818',
             'longitude' => '9.19532',
@@ -36,12 +36,12 @@ return [
             'rooms' => 2,
             'bathrooms' => 2,
             'sq_meters' => 120,
-            'description' => 'Appartamento di lusso nel cuore di Milano',
+            'description' => 'Un accogliente rifugio situato tra le montagne, perfetto per gli amanti della natura e delle escursioni',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Casa vacanze in montagna',
+            'title' => 'Dolce Tranquillità',
             'address' => 'Via Stazione, 32043 Cortina d\'Ampezzo',
             'latitude' => '46.53914',
             'longitude' => '12.13643',
@@ -49,11 +49,11 @@ return [
             'rooms' => 3,
             'bathrooms' => 2,
             'sq_meters' => 150,
-            'description' => 'Casa vacanze in montagna con vista panoramica',
+            'description' => 'Una casa che promette una pausa rilassante dalla frenesia quotidiana, offrendo un ambiente tranquillo e sereno',
             'cover_image'=> 'https://placehold.co/600x400',
          ],
         [
-            'title' => 'Appartamento di lusso',
+            'title' => 'Casa Soleggiata',
             'address' => 'Via Monte Napoleone, 20121 Milano',
             'latitude' => '45.46818',
             'longitude' => '9.19532',
@@ -61,12 +61,12 @@ return [
             'rooms' => 2,
             'bathrooms' => 2,
             'sq_meters' => 120,
-            'description' => 'Appartamento di lusso nel cuore di Milano',
+            'description' => 'Una residenza accogliente e luminosa, baciata dal sole tutto il giorno, perfetta per godersi la calda atmosfera diurna',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Casa vacanze in montagna',
+            'title' => 'Paradiso Sospeso',
             'address' => 'Via Faloria, 32043 Cortina d\'Ampezzo',
             'latitude' => '46.53269',
             'longitude' => '12.14363',
@@ -74,11 +74,11 @@ return [
             'rooms' => 3,
             'bathrooms' => 2,
             'sq_meters' => 150,
-            'description' => 'Casa vacanze in montagna con vista panoramica',
+            'description' => 'Una casa incantevole, apparentemente sospesa nel tempo e nello spazio, ideale per una fuga romantica',
             'cover_image'=> 'https://placehold.co/600x400',
          ],
         [
-            'title' => 'Appartamento con terrazza',
+            'title' => 'Angolo di Pace',
             'address' => 'Piazza Navona, 00186 Roma',
             'latitude' => '41.89913',
             'longitude' => '12.4732',
@@ -86,12 +86,12 @@ return [
             'rooms' => 2,
             'bathrooms' => 1,
             'sq_meters' => 80,
-            'description' => 'Appartamento di design con terrazza panoramica',
+            'description' => 'Un luogo dove ritrovare l\'armonia interiore e godersi un ambiente calmo e pacifico, lontano dal caos della vita quotidiana',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Villa toscana con piscina',
+            'title' => 'Rifugio delle Colline',
             'address' => 'Via del Castello, 53037 San Gimignano SI, Italia',
             'latitude' => '43.46754',
             'longitude' => '11.04466',
@@ -99,12 +99,12 @@ return [
             'rooms' => 5,
             'bathrooms' => 5,
             'sq_meters' => 400,
-            'description' => 'Una bellissima e autentica villa toscana con piscina privata e vista mozzafiato',
+            'description' => 'Una dimora affascinante immersa nelle colline, offrendo un rifugio ideale per rigenerarsi e godere della natura circostante',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Elegante appartamento nel cuore di Venezia',
+            'title' => 'Nido Accogliente',
             'address' => 'Campo San Polo, 30125 Venezia, Italia',
             'latitude' => '45.43735',
             'longitude' => '12.3296',
@@ -112,12 +112,12 @@ return [
             'rooms' => 2,
             'bathrooms' => 1,
             'sq_meters' => 80,
-            'description' => 'Un elegante e raffinato appartamento nel cuore di Venezia, a due passi da Piazza San Marco',
+            'description' => 'Una casa intima e accogliente, perfetta per una fuga romantica o un soggiorno tranquillo e confortevole',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Agriturismo con vista sulle colline del Chianti',
+            'title' => 'Cielo Blu Residenza',
             'address' => 'Via San Giovanni, 50028 Tavarnelle Val di Pesa FI, Italia',
             'latitude' => '43.56389',
             'longitude' => '11.17425',
@@ -125,12 +125,12 @@ return [
             'rooms' => 4,
             'sq_meters' => 200,
             'bathrooms' => 4,
-            'description' => 'Un bellissimo agriturismo immerso nelle colline del Chianti, con piscina panoramica',
+            'description' => 'Una residenza che offre un\'esperienza unica sotto un cielo sempre blu, ideale per un soggiorno di relax e serenità',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Appartamento di lusso con vista sulle Cinque Terre',
+            'title' => 'Vento Marinaio',
             'address' => 'Via Mazzini, 19018 Vernazza SP, Italia',
             'latitude' => '44.13448',
             'longitude' => '9.68334',
@@ -138,12 +138,12 @@ return [
             'rooms' => 2,
             'bathrooms' => 2,
             'sq_meters' => 120,
-            'description' => 'Un appartamento di lusso situato nel cuore delle Cinque Terre, con una vista mozzafiato sul mare',
+            'description' => 'Una residenza caratterizzata da una brezza marina rinfrescante e un\'atmosfera che richiama il mare, perfetta per chi ama il contatto con l\'oceano',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Villa con piscina in Umbria',
+            'title' => 'Cottage Incantato',
             'address' => 'Via Del Porto, 06069 Tuoro sul Trasimeno PG, Italia',
             'latitude' => '43.20603',
             'longitude' => '12.07734',
@@ -151,12 +151,12 @@ return [
             'rooms' => 3,
             'bathrooms' => 3,
             'sq_meters' => 150,
-            'description' => 'Una bellissima villa immersa nella campagna umbra, con piscina privata e vista panoramica',
+            'description' => 'Un\'affascinante dimora dal fascino fiabesco, immersa in un giardino incantato, perfetta per vivere una favola moderna',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Appartamento con terrazza nel centro di Firenze',
+            'title' => 'Casale Fiorito',
             'address' => 'Piazza della Signoria, 50122 Firenze FI, Italia',
             'latitude' => '43.76954',
             'longitude' => '11.25598',
@@ -164,12 +164,12 @@ return [
             'rooms' => 1,
             'bathrooms' => 1,
             'sq_meters' => 50,
-            'description' => 'Un accogliente appartamento nel cuore di Firenze, con una splendida terrazza panoramica',
+            'description' => 'Un antico casale circondato da giardini fioriti e profumati, offrendo un\'oasi di tranquillità e bellezza',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Villa sul Lago di Como',
+            'title' => 'Rifugio Selvaggio',
             'address' => 'Via Regina, 22010 Cernobio, Italia',
             'latitude' => '45.8523',
             'longitude' => '9.08894',
@@ -177,12 +177,12 @@ return [
             'rooms' => 4,
             'bathrooms' => 3,
             'sq_meters' => 200,
-            'description' => 'Una bellissima villa sul Lago di Como, con piscina privata e vista panoramica',
+            'description' => 'Una residenza avvolta dalla natura selvaggia e incontaminata, ideale per gli amanti dell\'avventura e della privacy',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Appartamento con terrazza a Sorrento',
+            'title' => 'Alba Magica',
             'address' => 'Corso Italia, 80067 Sorrento NA, Italia',
             'latitude' => '40.62676',
             'longitude' => '14.38085',
@@ -190,11 +190,11 @@ return [
             'rooms' => 2,
             'bathrooms' => 2,
             'sq_meters' => 100,
-            'description' => 'Un grazioso appartamento con terrazza nel centro di Sorrento',
+            'description' => 'Una casa dove ogni alba regala uno spettacolo mozzafiato, immergendo gli ospiti in una magia mattutina senza pari',
             'cover_image'=> 'https://placehold.co/600x400',
          ],
         [
-            'title' => 'Casa vacanza a San Vito lo Capo',
+            'title' => 'Oasi Verde',
             'address' => 'Via del Mandarino, 91010 San Vito Lo Capo TP, Italia',
             'latitude' => '38.13129',
             'longitude' => '12.73482',
@@ -202,12 +202,12 @@ return [
             'rooms' => 3,
             'bathrooms' => 2,
             'sq_meters' => 120,
-            'description' => 'Una confortevole casa vacanza con vista sul mare di San Vito lo Capo',
+            'description' => 'Un\'incantevole oasi di verde e tranquillità, ideale per chi cerca una fuga dalla vita cittadina',
             'cover_image'=> 'https://placehold.co/600x400',
             
         ],
         [
-            'title' => 'Casa di campagna',
+            'title' => 'Casa dei Sogni',
             'address' => 'Via dei Melograni, 50142 Firenze',
             'latitude' => '43.77741',
             'longitude' => '11.22011',
@@ -215,11 +215,11 @@ return [
             'rooms' => 3,
             'bathrooms' => 2,
             'sq_meters' => 120,
-            'description' => 'Affascinante casa di campagna con vista panoramica sulla campagna toscana',
+            'description' => 'Una dimora che sembra uscita direttamente dai sogni, offrendo un ambiente confortevole e accogliente per creare ricordi indimenticabili',
             'cover_image'=> 'https://placehold.co/600x400',
         ],
         [
-            'title' => 'Attico di lusso',
+            'title' => 'Dimora Relax',
             'address' => 'Viale della Vittoria, 00122 Roma',
             'latitude' => '41.72929,',
             'longitude' => '12.28798',
@@ -227,11 +227,11 @@ return [
             'rooms' => 1,
             'bathrooms' => 1,
             'sq_meters' => 80,
-            'description' => 'Esclusivo attico con terrazza panoramica nel cuore di Roma',
+            'description' => 'Una casa progettata per offrire il massimo relax, con spazi confortevoli e un\'atmosfera accogliente',
             'cover_image'=> 'https://placehold.co/600x400',
         ],
         [
-            'title' => 'Casa in collina',
+            'title' => 'Mare e Monti Hideaway',
             'address' => 'Viale dei Pini, 50142 Firenze',
             'latitude' => '43.77924',
             'longitude' => '11.21495',
@@ -239,11 +239,11 @@ return [
             'rooms' => 2,
             'bathrooms' => 1,
             'sq_meters' => 90,
-            'description' => 'Affascinante casa con vista sulla collina toscana',
+            'description' => 'Un rifugio nascosto tra il mare e le montagne, offrendo una varietà di esperienze naturali e paesaggi mozzafiato',
             'cover_image'=> 'https://placehold.co/600x400',
         ],
         [
-            'title' => 'Appartamento al mare',
+            'title' => 'Palazzo della Quietudine',
             'address' => 'Viale Trento, 47921 Rimini',
             'latitude' => '44.06591',
             'longitude' => '12.5792',
@@ -251,7 +251,7 @@ return [
             'rooms' => 2,
             'bathrooms' => 2,
             'sq_meters' => 70,
-            'description' => 'Accogliente appartamento con vista sul mare adriatico',
+            'description' => 'Una dimora maestosa che promette tranquillità assoluta e un\'esperienza di soggiorno regale',
             'cover_image'=> 'https://placehold.co/600x400',
          ],
         [
@@ -272,7 +272,7 @@ return [
             'latitude' => '43.76767',
             'longitude' => '11.2594',
             'beds' => 2,
-            'rooms' => 0,
+            'rooms' => 1,
             'bathrooms' => 1,
             'sq_meters' => 30,
             'description' => 'Accogliente monolocale nel cuore del centro storico',
@@ -989,55 +989,42 @@ return [
     'extras' => [
         [
             'name'=> 'cucina', 
-            'color'=> '#ffffff',
-            'icon'=> '&commat;',
-        ],
-        [
-            'name'=> 'wi-fi
-posto auto
-tv
-piscina
-aria condizionata
-vista mare
-ascensore
-animali ammessi
-giardino', 
-            'color'=> '#ffffff',
-            'icon'=> '&commat;',
+            'color'=> '#7A3F98',
+            'icon'=> '<i class="fa-solid fa-kitchen-set"></i>',
         ],
         [
             'name'=> 'wi-fi', 
-            'color'=> '#ffffff',
+            'color'=> '#2ECC71',
             'icon'=> '&commat;',
         ],
         [
             'name'=> 'giardino', 
-            'color'=> '#ffffff',
+            'color'=> '#F39C12',
             'icon'=> '&commat;',
         ],
         [
             'name'=> 'posto auto', 
-            'color'=> '#ffffff',
+            'color'=> '#3498DB',
             'icon'=> '&commat;',
         ],
         [
             'name'=> 'tv', 
-            'color'=> '#ffffff',
+            'color'=> '#E74C3C',
             'icon'=> '&commat;',
         ],
         [
             'name'=> 'piscina', 
-            'color'=> '#ffffff',
+            'color'=> '#1ABC9C',
             'icon'=> '&commat;',
         ],
         [
             'name'=> 'aria condizionata', 
-            'color'=> '#ffffff',
+            'color'=> '#D35400',
             'icon'=> '&commat;',
         ],
         [
             'name'=> 'vista mare', 
-            'color'=> '#ffffff',
+            'color'=> '#8E44AD',
             'icon'=> '&commat;',
         ],
     ],
@@ -1050,55 +1037,52 @@ giardino',
              
         ],
         [
+            'price'=> 5.99,
+            'duration' => 72,
             'name' => 'silver',
-                       'duration' => 5
         ],
         [
+            'price'=>9.99,
+            'duration' => 10,
             'name' => 'gold',
-                       'duration' => 10
         ],
     ],
 
     'users' => [
         [
-            'name' => 'Carmelo',
-            'lastname' => 'Palumbo',
-            'username' => 'paluc',
-            'email' => 'carmelopalumbo@boolbnb.com',
-            'password' => '12345678',
-            'date_of_birth' => '1997-04-26'
+            'name' => 'Mario',
+            'last_name' => 'Rossi',
+            'email' => 'mario.rossi@example.com',
+            'date_of_birth' => '1990-08-15',
+            'password' => 'securepass1'
         ],
         [
-            'name' => 'Carmelo',
-            'lastname' => 'Miuccio',
-            'username' => 'themrstraffy',
-            'email' => 'carmelomiuccio@boolbnb.com',
-            'password' => '12345678',
-            'date_of_birth' => '1994-05-27'
+            'name' => 'Anna',
+            'last_name' => 'Bianchi',
+            'email' => 'anna.bianchi@example.com',
+            'date_of_birth' => '1985-03-22',
+            'password' => 'strongpass2'
         ],
         [
-            'name' => 'Eugenio',
-            'lastname' => 'Belardinelli',
-            'username' => 'eugenio21',
-            'email' => 'eugeniobelardinelli@boolbnb.com',
-            'password' => '12345678',
-            'date_of_birth' => '1992-04-21'
+            'name' => 'Luca',
+            'last_name' => 'Verdi',
+            'email' => 'luca.verdi@example.com',
+            'date_of_birth' => '1995-11-10',
+            'password' => 'safepass3'
         ],
         [
-            'name' => 'Michele',
-            'lastname' => 'Zancolò',
-            'username' => 'zanco',
-            'email' => 'michelezancolo@boolbnb.com',
-            'password' => '12345678',
-            'date_of_birth' => '1997-05-19'
+            'name' => 'Giulia',
+            'last_name' => 'Neri',
+            'email' => 'giulia.neri@example.com',
+            'date_of_birth' => '1988-06-05',
+            'password' => 'secretword4'
         ],
         [
-            'name' => 'Jessica',
-            'lastname' => 'Tartaglia',
-            'username' => 'fr_jess',
-            'email' => 'jessicatartaglia@boolbnb.com',
-            'password' => '12345678',
-            'date_of_birth' => '1985-05-26'
+            'name' => 'Alessio',
+            'last_name' => 'Giallo',
+            'email' => 'alessio.giallo@example.com',
+            'date_of_birth' => '1992-09-18',
+            'password' => 'password123'
         ]
     ],
 

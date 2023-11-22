@@ -16,12 +16,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User();
-        $user->name = "Mario";
-        $user->last_name = "Rossi";
-        $user->email = "admin@email.it";
-        $user->date_of_birth = '1990-02-03';
-        $user->password = Hash::make("password");
-        $user->save();
+        $users = config('db.users');
+
+        foreach ($users as $_user){
+
+            
+            $user = new User();
+            $user->name = $_user['name'];
+            $user->last_name = $_user['last_name'];
+            $user->email = $_user['email'];
+            $user->date_of_birth = $_user['date_of_birth'];
+            $user->password = Hash::make($_user['password']);
+
+            $user->save();
+        }
     }
 }
