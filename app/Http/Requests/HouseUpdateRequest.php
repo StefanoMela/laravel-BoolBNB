@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HouseStoreRequest extends FormRequest
+class HouseUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,17 @@ class HouseStoreRequest extends FormRequest
     public function rules()
     {
         return [
-        // 'user_id'=>'required|exists:users,id',
-        'title' => 'required|string|min:2|max:200',
-        'address' => 'required|string|min:2|',
-        'description' => 'required|string|min:10|max:500',
-        'sq_meters' => 'required|integer|min:1',
-        'rooms' => 'required|integer|min:1',
-        'beds' => 'required|integer|min:1',
-        'bathrooms' => 'required|integer|min:1',
-        'cover_image' => 'required|image',
-        'extras' => ['nullable', 'exists:extras,id'],        
-        ];
+            // 'user_id'=>'required|exists:users,id',
+            'title' => 'required|string|min:2|max:200',
+            'address' => 'required|string|min:2|',
+            'description' => 'required|string|min:10|max:500',
+            'sq_meters' => 'required|integer|min:1',
+            'rooms' => 'required|integer|min:1',
+            'beds' => 'required|integer|min:1',
+            'bathrooms' => 'required|integer|min:1',
+            'cover_image' => 'image',
+            'extras' => ['nullable', 'exists:extras,id'],        
+            ];
     }
 
     public function messages()
@@ -70,7 +70,6 @@ class HouseStoreRequest extends FormRequest
             'bathrooms.integer' => 'Il numero di bagni deve essere un numero',
             'bathrooms.min' => 'Il numero di bagni deve essere minimo uno',
 
-            'cover_image.required' => 'Il file è obbligatorio',
             'cover_image.image' => 'Il file caricato deve essere un\' immagine',
 
             'extras.exists' => 'I servizi inseriti non sono validi',

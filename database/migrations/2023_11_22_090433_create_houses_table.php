@@ -24,8 +24,8 @@ return new class extends Migration
             $table->unsignedInteger('beds');
             $table->unsignedInteger('bathrooms');
             $table->string('address');
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->timestamps();
         });
     }

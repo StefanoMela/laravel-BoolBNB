@@ -2,9 +2,9 @@
     <div id="popup_message" class="d-none" data-type="warning" data-message="Check errors"></div>
 @endif
 
-<form action="{{ route($route) }}" id="{{$idForm}}" method="POST" class="my-2" enctype="multipart/form-data">
+<form action="{{ route($route, $house->id) }}" id="{{$idForm}}" method="POST" class="my-2" enctype="multipart/form-data">
+    @method($methodRoute)
     @csrf
-    {{-- @method($methodRoute) --}}
     <div class="card">
       <div class="card-header">
         <h2 class="text-center mb-2">{{$title}}</h2>
@@ -42,17 +42,16 @@
         </div>
         <div class="form-outline w-25 mb-3">
             <label for="cover_image" class="form-label">Foto della casa</label>
-            <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" value="{{ old('cover_image',$house->cover_image) }}">           
+            <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" value="{{old('cover_image', $house->cover_image)}}">           
             @error('cover_image')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror    
-
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="{{ old('description',$house->description) }}" cols="30" rows="5"></textarea>
+            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="" cols="30" rows="5">{{ old('description',$house->description) }}</textarea>
             @error('description')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -118,7 +117,7 @@
                     <div class="col">
                         <input type="checkbox" class="form-check-input" name="extras[]"
                         id="extra-{{$extra->id}}" value="{{$extra->id}}" @if(in_array($extra->id,
-                        old('extras')?? [])) checked
+                        old('extras', $extra_house))) checked
                         @endif
                         >
                         <label class="form-check-label" for="extra-{{$extra->id}}">{{$extra->name}}</label>
