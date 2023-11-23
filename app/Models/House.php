@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class House extends Model
 {
     use HasFactory;
 
-    protected $fillable=['user_id', 'title','cover_image','description','rooms','sq_meters','beds','bathrooms','addres','longitude','latitude'];
+    protected $fillable=['user_id', 'title','cover_image','description','rooms','sq_meters','beds','bathrooms','address'];
     
 
     public function user(){
@@ -31,6 +32,10 @@ class House extends Model
     }
     public function sponsorships(){
         return $this->belongsToMany(Sponsorship::class);
+    }
+
+    public function getAbsUriImage(){
+        return $this->cover_image ? Storage::url($this->cover_image) : null ;
     }
     
     
