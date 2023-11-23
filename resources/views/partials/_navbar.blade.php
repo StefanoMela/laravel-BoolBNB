@@ -11,6 +11,7 @@
           <a class="nav-link {{ Route::currentRouteName() == 'guest.home' ? 'active' : '' }}"
             href="{{ route('guest.home') }}" aria-current="page">Home<span class="visually-hidden">(current)</span></a>
         </li>
+        
         @guest
           <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -41,6 +42,11 @@
               </form>
             </div>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.houses.index') }}">My Houses</a>
+          </li>
+          
         @endguest
       </ul>
       {{-- <form class="d-flex my-2 my-lg-0">
