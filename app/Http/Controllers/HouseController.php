@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HouseStoreRequest;
 use App\Models\Extra;
 use App\Models\House;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HouseController extends Controller
 {
@@ -38,8 +41,30 @@ class HouseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HouseStoreRequest $request)
     {
+        $data = $request->validated();
+        dd($data);
+
+        $house = new House;
+        $house->fill($data);
+        dd($data);
+
+        
+        $house->user_id = Auth::user()->id;
+        
+        dd($house);
+        $house->save();
+        if($request->hasFile('cover_image')){
+            $data['cover_image'] = Storage::put('uploads/houses/cover_image', $data['cover_image']);
+        }
+        
+
+        
+        if(Arr::exists($data, "extras")) $house->extras()->attach($data["extras"]);
+        // $house->extras()->attach($data["extras"]);
+
+        return redirect()->route('admin.houses.index', $house);
         
     }
 
