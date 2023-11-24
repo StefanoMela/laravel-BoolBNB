@@ -41,6 +41,10 @@
             </div>
             @enderror    
         </div>
+        <div class=" w-50">
+            <img @if($methodRoute == 'PATCH') src="{{asset('/storage/'. $house->cover_image)}}
+            " @elseif ($methodRoute == 'POST') src="" @endif class="img-fluid" id="cover_image_preview"></div>
+        </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione {{$essential}}</label>
             <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="" cols="30" rows="5">{{ old('description',$house->description) }}</textarea>
