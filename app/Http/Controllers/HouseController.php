@@ -32,8 +32,9 @@ class HouseController extends Controller
      */
     public function create(House $house)
     {
-        $extras = Extra::all();
-        return view("admin.houses.create", compact("house", "extras"));
+        $extras = Extra::all();        
+        $extra_house = $house->extras->pluck('id')->toArray();
+        return view("admin.houses.create", compact("house", "extras", "extra_house"));
     }
 
     /**
