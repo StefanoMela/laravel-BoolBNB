@@ -81,10 +81,18 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(House $house)
-    {
-        $extras = Extra::orderBy('name')->get();
-        $extra_house = $house->extras->pluck('id')->toArray();
-        return view("admin.houses.edit", compact("house", "extras", "extra_house"));
+    {        
+        $user_id = Auth::user()->id;
+        if($user_id==$house->user_id){
+            $extras = Extra::orderBy('name')->get();
+            $extra_house = $house->extras->pluck('id')->toArray();
+            return view("admin.houses.edit", compact("house", "extras", "extra_house"));
+
+        }
+        return redirect()->route('admin.houses.index');
+
+        
+       
     }
 
     /**
@@ -112,6 +120,7 @@ class HouseController extends Controller
             $house->extras()->sync($data["extras"]);
         else
             $house->extras()->detach();
+        
 
         return redirect()->route('admin.houses.index', $house);
     }

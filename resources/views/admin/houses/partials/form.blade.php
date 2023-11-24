@@ -1,8 +1,10 @@
-@if ($errors->any())
+{{-- @if ($errors->any())
     <div id="popup_message" class="d-none" data-type="warning" data-message="Check errors"></div>
+@endif --}}
+
 @endif
 
-<form action="{{ route($route, $house->id) }}" id="{{$idForm}}" method="POST" class="my-2 " enctype="multipart/form-data">
+<form action="{{ route($route, $house->id) }}" id="{{$idForm}}" method="POST" class="my-2" enctype="multipart/form-data">
     @method($methodRoute)
     @csrf
     <div class="card">
@@ -41,11 +43,11 @@
             </div>
             @enderror    
         </div>
-        <div class=" w-25">
+        <div class=" w-50">
             <img @if($methodRoute == 'PATCH') src="{{asset('/storage/'. $house->cover_image)}}
             " @elseif ($methodRoute == 'POST') src="" @endif class="img-fluid" id="cover_image_preview"></div>
-        
-        <div class=" mb-3">
+        </div>
+        <div class="mb-3">
             <label for="description" class="form-label">Descrizione {{$essential}}</label>
             <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" value="" cols="30" rows="5">{{ old('description',$house->description) }}</textarea>
             @error('description')
@@ -127,16 +129,16 @@
             </div>
             @enderror
         </div>
-    </div>
+
         
       </div>
-      <div class="card-footer text-end mt-4">
+      <div class="card-footer text-end">
         <a href="{{ route('admin.houses.index')}}" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i>&nbsp;Cancel</a>
         <button type="submit" class="btn btn-success {{$btnClass}}"><i class="fa-solid fa-save"></i>&nbsp;Submit</button>
       </div>
     </div>
 
-    <div class="container">
+    <div>
         <p class="fs-6 fst-italic text-secondary">Sono contrassegnati con * i dati obbligatori.
         </p>
     </div>
