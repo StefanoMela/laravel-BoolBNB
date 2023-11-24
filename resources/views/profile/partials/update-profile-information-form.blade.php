@@ -26,6 +26,7 @@
             </span>
             @enderror
         </div>
+      
 
         <div class="mb-2">
             <label for="email">
