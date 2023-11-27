@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\House;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FeaturedHouseController extends Controller
 {
@@ -16,8 +17,13 @@ class FeaturedHouseController extends Controller
      */
     public function index(House $house)
     {
-        $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address');
-        $house->cover_image = $house->getAbsUriImage();
+        $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
+        ->orderByDesc('id')
+        ->paginate(12);
+        foreach($houses as $house){
+            $house->cover_image = Storage::url($house->cover_image);
+        };
+
         return response()->json($houses);
     }
 
