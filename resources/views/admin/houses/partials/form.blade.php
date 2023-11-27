@@ -24,7 +24,7 @@
 
         </div>
 
-        <div class="form-outline mb-3">
+        {{-- <div class="form-outline mb-3">
             <label for="address" class="form-label">Indirizzo {{$essential}}</label>
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address',$house->address) }}">           
             @error('address')
@@ -33,7 +33,22 @@
             </div>
             @enderror    
 
+        </div> --}}
+
+        <div class="form-outline mb-3">
+            <label for="address" class="form-label">Indirizzo {{$essential}}</label>           
+            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address',$house->address) }}">           
+
+            @error('address')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror 
         </div>
+
+        <div class="form-outline mb-3">
+        </div>
+
         <div class="form-outline w-25 mb-3">
             <label for="cover_image" class="form-label">Foto della casa {{$essential}}</label>
             <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" value="{{old('cover_image', $house->cover_image)}}">           
@@ -142,8 +157,11 @@
         <p class="fs-6 fst-italic text-secondary">Sono contrassegnati con * i dati obbligatori.
         </p>
     </div>
+    @include('admin.houses.partials.searchbar')
+
 </form>
-{{-- 
+
 @section('script')
-    @vite('resources/js/confirmDelete.js')
-@endsection --}}
+    {{-- @vite('resources/js/confirmDelete.js') --}}
+
+@endsection
