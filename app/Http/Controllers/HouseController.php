@@ -82,7 +82,7 @@ class HouseController extends Controller
         $house->fill($data);
         $house->save();
 
-        dd($house);
+        // dd($house);
         
         if(Arr::exists($data, "extras")) $house->extras()->attach($data["extras"]);
 
