@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\House;
+use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 
 class FeaturedHouseController extends Controller
@@ -15,9 +16,8 @@ class FeaturedHouseController extends Controller
      */
     public function index(House $house)
     {
-        $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
-        ->paginate(10);
-
+        $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address');
+        $house->cover_image = $house->getAbsUriImage();
         return response()->json($houses);
     }
 

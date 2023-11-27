@@ -37,6 +37,4 @@ class House extends Model
     public function getAbsUriImage(){
         return $this->cover_image ? Storage::url($this->cover_image) : null ;
     }
-    
-    
 }
