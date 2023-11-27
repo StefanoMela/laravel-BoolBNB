@@ -90,9 +90,6 @@ class HouseController extends Controller
 
         }
         return redirect()->route('admin.houses.index');
-
-        
-       
     }
 
     /**
