@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\House;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FeaturedHouseController extends Controller
 {
@@ -17,6 +18,10 @@ class FeaturedHouseController extends Controller
     {
         $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
         ->paginate(10);
+        foreach($houses as $house){
+            $house->cover_image = Storage::url($house->cover_image);
+            // $house->cover_image = $house->getAbsUriImage();
+        }
 
         return response()->json($houses);
     }
