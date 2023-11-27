@@ -48,6 +48,7 @@ class HouseController extends Controller
      */
     public function store(HouseStoreRequest $request)
     {
+        dd($request);
         $data = $request->validated();
 
         $house = new House;       
@@ -55,34 +56,8 @@ class HouseController extends Controller
         $house->user_id = Auth::user()->id;
         if($request->hasFile('cover_image')){
             $data['cover_image'] = Storage::put('uploads/houses/cover_image', $data['cover_image']);
-        }           
+        }
         
-        
-        
-        // $address = urlencode($data['address']);
-
-        $response = Http::get('https://api.tomtom.com/search/2/geocode/&address=Via Pietro Micca 38 Sassari.json?key=5uNY3BSE9gSMXl2atJSMJJrZAbfvhazZ');
-
-        dd($response);
-        
-        // $response = Http::get('https://api.tomtom.com/search/2/geocode/'.'.$address.'.'.json', [
-        //     'query' => [
-        //         'key' => '0rTLHeC6A9vwS6HFMZTV1xEuCF56dTTt',
-        //         'limit' => 1,
-        //     ]
-        // ]);
-        // error_log(print_r($response,true));
-        // $data = json_decode($response->getBody(), true);
-        // $latitude = $data['results'][0]['position']['lat'];
-        // $longitude = $data['results'][0]['position']['lon'];
-        // $house->latitude = $latitude;
-        // $house->longitude = $longitude;
-
-        // $response = Http::get("https://api.tomtom.com/search/2/geocode/&address=Via Pietro Micca 38 Sassari.json?key=5uNY3BSE9gSMXl2atJSMJJrZAbfvhazZ");
-
-        
-
-
         $house->fill($data);
         $house->save();
         
