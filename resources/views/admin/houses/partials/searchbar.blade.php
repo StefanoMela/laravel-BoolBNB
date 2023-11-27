@@ -24,7 +24,7 @@
 
     var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 
-    document.getElementById("address").append(searchBoxHTML)
+    document.getElementById("address").appendChild(searchBoxHTML)
     // document.forms.namedItem("address").innerHTML = searchBoxHTML
     // formElement.append(searchBoxHTML);
 </script>
