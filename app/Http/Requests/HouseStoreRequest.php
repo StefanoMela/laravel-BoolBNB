@@ -33,7 +33,7 @@ class HouseStoreRequest extends FormRequest
         'beds' => 'required|integer|min:1',
         'bathrooms' => 'required|integer|min:1',
         'cover_image' => 'required|image',
-        'extras' => ['nullable', 'exists:extras,id'],        
+        'extras' => ['required', 'exists:extras,id'],        
         ];
     }
 
@@ -73,6 +73,7 @@ class HouseStoreRequest extends FormRequest
             'cover_image.required' => 'Il file è obbligatorio',
             'cover_image.image' => 'Il file caricato deve essere un\' immagine',
 
+            'extras.required' => 'Selezionare almeno un servizio aggiuntivo è obbligatorio',
             'extras.exists' => 'I servizi inseriti non sono validi',
 
 
