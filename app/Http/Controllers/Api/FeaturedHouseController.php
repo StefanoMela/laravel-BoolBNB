@@ -17,11 +17,11 @@ class FeaturedHouseController extends Controller
     public function index(House $house)
     {
         $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
-        ->paginate(10);
+        ->orderByDesc('id')
+        ->paginate(12);
         foreach($houses as $house){
             $house->cover_image = Storage::url($house->cover_image);
-            // $house->cover_image = $house->getAbsUriImage();
-        }
+        };
 
         return response()->json($houses);
     }
