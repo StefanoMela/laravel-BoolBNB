@@ -2,7 +2,7 @@
     <div id="popup_message" class="d-none" data-type="warning" data-message="Check errors"></div>
 @endif --}}
 
-@endif
+
 
 <form action="{{ route($route, $house->id) }}" id="{{$idForm}}" method="POST" class="my-2" enctype="multipart/form-data">
     @method($methodRoute)
