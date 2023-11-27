@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
+use GuzzleHttp\Client;
 
 class HouseController extends Controller
 {
@@ -48,8 +49,11 @@ class HouseController extends Controller
      */
     public function store(HouseStoreRequest $request)
     {
-        dd($request);
+        // dd($request);
         $data = $request->validated();
+
+        // prendo id user dallo user loggato
+        $user = Auth::user();
 
         $house = new House;       
         
@@ -57,9 +61,28 @@ class HouseController extends Controller
         if($request->hasFile('cover_image')){
             $data['cover_image'] = Storage::put('uploads/houses/cover_image', $data['cover_image']);
         }
+
+        // user_id viene valorizzato in base a chi è collegato
+        $house->user_id = $user->id;
+
+        // * ++++ gestione latitudine e longitudine
+        // *forzo il fatto di non usare la verifica ssl
+        $client = new Client([
+            'verify' => false, // Ignora la verifica SSL
+        ]);
+        // inserisco l'indirizzo fornito nella chiamata api tomtom
+        $response = $client->get('https://api.tomtom.com/search/2/geocode/' . $data['address'] . '.json?key=t7a52T1QnfuvZp7X85QvVlLccZeC5a9P');
+
+        $data_position = json_decode($response->getBody(), true);
+
+        // distribuisco il valore di lat e lon ai campi del db
+        $house->latitude = $data_position['results'][0]['position']['lat'];
+        $house->longitude = $data_position['results'][0]['position']['lon'];
         
         $house->fill($data);
         $house->save();
+
+        dd($house);
         
         if(Arr::exists($data, "extras")) $house->extras()->attach($data["extras"]);
 
