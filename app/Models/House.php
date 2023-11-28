@@ -37,4 +37,8 @@ class House extends Model
     public function getAbsUriImage(){
         return $this->cover_image ? Storage::url($this->cover_image) : null ;
     }
+    public function getAbstract($chars = 50 ){
+        return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . "..." : $this->description ;
+    }
+    
 }
