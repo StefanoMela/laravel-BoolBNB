@@ -21,6 +21,7 @@ class FeaturedHouseController extends Controller
         ->orderByDesc('id')
         ->paginate(12);
         foreach($houses as $house){
+            $house->description = $house->getAbstract(100);
             $house->cover_image = Storage::url($house->cover_image);
         };
 
