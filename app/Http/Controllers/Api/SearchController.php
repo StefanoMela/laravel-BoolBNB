@@ -3,30 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Extra;
 use App\Models\House;
-use App\Models\Sponsorship;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class FeaturedHouseController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(House $house)
+    public function index()
     {
-         $houses = DB::table('houses')
-         ->join('house_sponsorship', 'houses.id', '=', 'house_sponsorship.house_id')
-         ->select('houses.*')
-         ->paginate(12);
-         foreach($houses as $house){
-            //   $house->description = $house->getAbstract(100);
-              $house->cover_image = Storage::url($house->cover_image);
-         };
-
+        $houses = House::all();
+        foreach ($houses as $house) {
+            $house->cover_image = Storage::url($house->cover_image);
+        };
         return response()->json($houses);
     }
 
@@ -49,10 +43,7 @@ class FeaturedHouseController extends Controller
      */
     public function show($id)
     {
-        $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
-        ->paginate(10);
-
-        return response()->json($houses);
+        //
     }
 
     /**
