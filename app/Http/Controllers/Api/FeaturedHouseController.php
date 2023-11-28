@@ -23,8 +23,8 @@ class FeaturedHouseController extends Controller
         ->select('houses.*')
         ->paginate(12);
         foreach($houses as $house){
-            $house->description = $house->getAbstract(100);
-            $house->cover_image = Storage::url($house->cover_image);
+            // $house->description = $house->getAbstract(100);
+             $house->cover_image = Storage::url($house->cover_image);
         };
 
         return response()->json($houses);
