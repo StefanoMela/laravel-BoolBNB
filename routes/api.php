@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\FeaturedHouseController;
+use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\ExtrasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('houses', FeaturedHouseController::class);
+Route::apiResource('search', SearchController::class);
+Route::apiResource('extras', ExtrasController::class);
