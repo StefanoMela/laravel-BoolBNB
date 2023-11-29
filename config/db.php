@@ -995,37 +995,37 @@ return [
         [
             'name'=> 'wi-fi', 
             'color'=> '#2ECC71',
-            'icon'=> '&commat;',
+            'icon'=> '<i class="fa-solid fa-wifi"></i>',
         ],
         [
             'name'=> 'giardino', 
             'color'=> '#F39C12',
-            'icon'=> '&commat;',
+            'icon'=> '<i class="fa-solid fa-seedling"></i>',
         ],
         [
             'name'=> 'posto auto', 
             'color'=> '#3498DB',
-            'icon'=> '&commat;',
+            'icon'=> '<i class="fa-solid fa-square-parking"></i>',
         ],
         [
             'name'=> 'tv', 
             'color'=> '#E74C3C',
-            'icon'=> '&commat;',
+            'icon'=> '<i class="fa-solid fa-tv"></i>',
         ],
         [
             'name'=> 'piscina', 
             'color'=> '#1ABC9C',
-            'icon'=> '&commat;',
+            'icon'=> '<i class="fa-solid fa-person-swimming"></i>',
         ],
         [
             'name'=> 'aria condizionata', 
             'color'=> '#D35400',
-            'icon'=> '&commat;',
+            'icon'=> '<i class="fa-solid fa-wind"></i>',
         ],
         [
             'name'=> 'vista mare', 
             'color'=> '#8E44AD',
-            'icon'=> '&commat;',
+            'icon'=> '<i class="fa-solid fa-water"></i>',
         ],
     ],
 

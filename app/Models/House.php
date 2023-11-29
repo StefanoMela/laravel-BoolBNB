@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
+
 class House extends Model
 {
     use HasFactory,SoftDeletes;
@@ -42,6 +43,5 @@ class House extends Model
     }
     public function getAbstract($chars = 50 ){
         return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . "..." : $this->description ;
-    }
-    
+    }    
 }

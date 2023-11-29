@@ -1,57 +1,42 @@
 <script>
+  // Inserisco le opzioni del construttore di SearchBox
     var options = {
-      searchOptions: {
-        key: "5uNY3BSE9gSMXl2atJSMJJrZAbfvhazZ",
-        language: "it-IT",
-        limit: 5,
-      },
-      autocompleteOptions: {
-        key: "5uNY3BSE9gSMXl2atJSMJJrZAbfvhazZ",
-        language: "it-IT",
-      },
-    };
+      // Opzioni di ricerca
+        searchOptions: {
+          key: "5uNY3BSE9gSMXl2atJSMJJrZAbfvhazZ",
+          language: "it-IT",
+          limit: 5,
+        },
+        // Autocomplete
+        autocompleteOptions: {
+          key: "5uNY3BSE9gSMXl2atJSMJJrZAbfvhazZ",
+          language: "it-IT",
+        },
+        // placeholder
+        placeholder: "Es. Via Roma...",
+      }
+      // Elemento SearchBox
+      var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+      // SearchBox in HTML
+      var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+      // Prendo un elemento 
+      let addressElement = document.getElementById('address-element')
+      // inserisco il searchBox HTML dentro l'elemento selezionato
+      addressElement.append(searchBoxHTML)
 
-    var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+      // Chiamo l'evento tomtom.searchbox.resultselected
+      ttSearchBox.on("tomtom.searchbox.resultselected", function (data) {
 
-    var formElement = document.getElementById('create-form');
+        // console.log(data)
 
-    var addressElement = document.getElementById('address-element');
+        // Prendo l'input nascosto con ID address 
+        let address = document.getElementById('address');
 
-    var titleElement = document.getElementById('title');
+        // Inserisco il valore dell'indirizzo dall'oggetto data in una variabile
+        let addressVal = data.data.result.address.freeformAddress
 
-    // address = ttSearchBox.getSearchBoxHTML();
-    // document.body.append(address);
+        // Inserisco il valore dell'indirizzo dentro il valore dell'input nascosto 
+        address.value = addressVal;
 
-    // public function getMySearchBox(){
-    //     <div>
-    //     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    //             <path d="M10.5,4 C14.0898509,4 17,6.91014913 17,10.5 C17,11.9337106 16.5358211,13.2590065 15.7495478,14.3338028 L19.7071068,18.2928932 C20.0976311,18.6834175 20.0976311,19.3165825 19.7071068,19.7071068 C19.3165825,20.0976311 18.6834175,20.0976311 18.2928932,19.7071068 L14.3338028,15.7495478 C13.2590065,16.5358211 11.9337106,17 10.5,17 C6.91014913,17 4,14.0898509 4,10.5 C4,6.91014913 6.91014913,4 10.5,4 Z M10.5,6 C8.01471863,6 6,8.01471863 6,10.5 C6,12.9852814 8.01471863,15 10.5,15 C12.9852814,15 15,12.9852814 15,10.5 C15,8.01471863 12.9852814,6 10.5,6 Z" id="Shape"></path>
-    //     </svg></div>
-    //     <div class="tt-searchbox-filter-label" style="display: none;">
-    //         <div class="tt-searchbox-filter-label__text"></div>
-    //         <div class="tt-searchbox-filter-label__close-button">
-    //             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13" viewBox="0 0 15 13">
-    //             <path d="M15.512418,11.5 L19.9637666,7.28870352 C20.1223719,7.13865149 20.1223719,6.89512441 19.9637666,6.74507238 L18.2390424,5.11253903 C18.0795704,4.96248699 17.8221618,4.96248699 17.6635565,5.11253903 L13.2122078,9.3238355 L8.7608592,5.11253903 C8.68545669,5.04120281 8.58145321,5.00020499 8.47398296,5.00020499 C8.36564601,5.00020499 8.26250923,5.04120281 8.18624002,5.11253903 L6.46064906,6.74507238 C6.38437985,6.81722855 6.34191176,6.91480337 6.34191176,7.01729793 C6.34191176,7.11979249 6.38437985,7.21736731 6.46064906,7.28952348 L10.9119977,11.5 L6.46064906,15.7112965 C6.38437985,15.7834526 6.34191176,15.8810275 6.34191176,15.9827021 C6.34191176,16.0851966 6.38437985,16.1827715 6.46064906,16.2549276 L8.18624002,17.887461 C8.26250923,17.9596171 8.36564601,17.999795 8.47398296,17.999795 C8.58145321,17.999795 8.68545669,17.9596171 8.7608592,17.887461 L13.2122078,13.6761645 L17.6635565,17.887461 C17.8221618,18.037513 18.0795704,18.037513 18.2390424,17.887461 L19.9637666,16.2549276 C20.1223719,16.1048756 20.1223719,15.8613485 19.9637666,15.7112965 L15.512418,11.5 Z" transform="translate(-5.544 -5)"></path>
-    //             </svg>
-    //             </div>
-    //         </div>
-    //         <input id="address" name="address" class="tt-search-box-input" placeholder=""><div class="tt-search-box-close-icon -hidden">
-    //         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13" viewBox="0 0 15 13">
-    //         <path d="M15.512418,11.5 L19.9637666,7.28870352 C20.1223719,7.13865149 20.1223719,6.89512441 19.9637666,6.74507238 L18.2390424,5.11253903 C18.0795704,4.96248699 17.8221618,4.96248699 17.6635565,5.11253903 L13.2122078,9.3238355 L8.7608592,5.11253903 C8.68545669,5.04120281 8.58145321,5.00020499 8.47398296,5.00020499 C8.36564601,5.00020499 8.26250923,5.04120281 8.18624002,5.11253903 L6.46064906,6.74507238 C6.38437985,6.81722855 6.34191176,6.91480337 6.34191176,7.01729793 C6.34191176,7.11979249 6.38437985,7.21736731 6.46064906,7.28952348 L10.9119977,11.5 L6.46064906,15.7112965 C6.38437985,15.7834526 6.34191176,15.8810275 6.34191176,15.9827021 C6.34191176,16.0851966 6.38437985,16.1827715 6.46064906,16.2549276 L8.18624002,17.887461 C8.26250923,17.9596171 8.36564601,17.999795 8.47398296,17.999795 C8.58145321,17.999795 8.68545669,17.9596171 8.7608592,17.887461 L13.2122078,13.6761645 L17.6635565,17.887461 C17.8221618,18.037513 18.0795704,18.037513 18.2390424,17.887461 L19.9637666,16.2549276 C20.1223719,16.1048756 20.1223719,15.8613485 19.9637666,15.7112965 L15.512418,11.5 Z" transform="translate(-5.544 -5)"></path>
-    //         </svg>
-    //     </div>
-    // }
-
-    
-    var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-    // console.log(searchBoxHTML);
-
-
-    document.getElementById("address-element").appendChild(searchBoxHTML)
-
-    var inputElement = searchBoxHTML.getElementsByClassName("tt-search-box-input");
-    inputElement.id= "address";
-
-
-    // document.forms.namedItem("address").innerHTML = searchBoxHTML
+})
 </script>
