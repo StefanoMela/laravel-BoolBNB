@@ -159,6 +159,12 @@ class HouseController extends Controller
      */
     public function destroy(House $house)
     {
-        //
+        {
+            $house->delete();
+            return redirect()->route("admin.houses.index")
+                ->with('message_type', 'danger')
+                ->with('message', 'Progetto messo nel cestino con successo');
+            ;
+        }
     }
 }
