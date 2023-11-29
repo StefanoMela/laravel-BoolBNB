@@ -17,7 +17,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $houses = House::all();
+        $houses = House::paginate(12);
         foreach ($houses as $house) {
             $house->cover_image = Storage::url($house->cover_image);
         };
