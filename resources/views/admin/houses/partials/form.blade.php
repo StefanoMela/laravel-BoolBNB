@@ -26,7 +26,7 @@
         </div>
 
         {{-- Address --}}
-        <div class="form-outline mb-3">
+        {{-- <div class="form-outline mb-3">
             <label for="address" class="form-label">Indirizzo {{$essential}}</label>
             <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address',$house->address) }}">           
             @error('address')
@@ -35,17 +35,19 @@
             </div>
             @enderror    
 
-        </div>
+        </div> --}}
 
-        {{-- <div class="form-outline mb-3" id="address-element">
+        <div class="form-outline mb-3" id="address-element">
             <label for="address" class="form-label">Indirizzo {{$essential}}</label>              
+            <div id="address-element"></div>
+            <input type="hidden" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
 
             @error('address')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
             @enderror 
-        </div> --}}
+        </div>
 
         {{-- Cover Image --}}
         <div class="form-outline w-25 mb-3">
