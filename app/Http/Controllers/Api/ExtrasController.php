@@ -39,7 +39,9 @@ class ExtrasController extends Controller
      */
     public function show($id)
     {
-        //
+        $extra = Extra::all();
+
+        return response()->json($extra);
     }
 
     /**
