@@ -166,7 +166,11 @@
         
         <a href="{{ route('admin.houses.index')}}" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i>&nbsp;Cancel</a>
         <button type="submit" class="btn btn-success {{$btnClass}}"><i class="fa-solid fa-save"></i>&nbsp;Submit</button>
+        
+        @if($methodRoute == 'PATCH')
         @include('admin.houses.partials.delete_button')
+        @endif
+        
 
     </div>
 
