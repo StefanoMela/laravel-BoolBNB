@@ -12,6 +12,8 @@
           key: "5uNY3BSE9gSMXl2atJSMJJrZAbfvhazZ",
           language: "it-IT",
         },
+        // placeholder
+        placeholder: "Es. Via Roma...",
       }
       // Elemento SearchBox
       var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
