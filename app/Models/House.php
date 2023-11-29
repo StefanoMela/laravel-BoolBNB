@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
+
 class House extends Model
 {
     use HasFactory;
@@ -39,6 +40,11 @@ class House extends Model
     }
     public function getAbstract($chars = 50 ){
         return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . "..." : $this->description ;
+    }
+
+    public function getExtraBadge()
+    {  
+        return ($this->extra ("<span class='badge' style='background-color: {$this->extra->color}'>{$this->extra->name}</span>"));  
     }
     
 }
