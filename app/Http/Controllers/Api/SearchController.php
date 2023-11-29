@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Extra;
 use App\Models\House;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SearchController extends Controller
@@ -67,5 +68,11 @@ class SearchController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getCoordinate(Request $request){
+        dd("ciao");
+        $houses = House::all();
+        return response()->json($houses);
     }
 }
