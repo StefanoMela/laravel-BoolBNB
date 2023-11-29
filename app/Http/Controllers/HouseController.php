@@ -98,7 +98,9 @@ class HouseController extends Controller
      */
     public function show(House $house)
     {
-        //
+        $extras = Extra::all();  
+        $user = Auth::user();
+        return view('admin.houses.show', compact('house', 'user', 'extras'));
     }
 
     /**

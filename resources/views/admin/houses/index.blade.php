@@ -14,6 +14,7 @@
                         <p class="card-text">{{$house->description}}</p>                        
                         {{-- <p class="card-text">{{$house->user_id}}</p>                         --}}
                         <a href="{{route('admin.houses.edit', $house)}}">Aggiorna</a>
+                        <a href="{{ route('admin.houses.show', $house) }}"> Dettaglio </a>
                     </div>
                 </div>
             </div>
