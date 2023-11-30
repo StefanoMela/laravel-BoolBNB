@@ -12,9 +12,9 @@
                     <div class="card-body">
                         <h4 class="card-title">{{$house->title}}</h4>
                         <p class="card-text">{{$house->description}}</p>                        
-                        <div class="d-flex  gap-3">
+                        <div class="d-flex  gap-2">
                             <a class="btn btn-primary" href="{{route('admin.houses.edit', $house)}}"  >Aggiorna</a>
-                            <a href="{{ route('admin.houses.show', $house) }}"> Dettaglio </a>
+                            <a class="btn btn-primary" href="{{ route('admin.houses.show', $house) }}"> Dettaglio </a>
                             @include('admin.houses.partials.delete_button')
 
                          </div> 
