@@ -4,8 +4,8 @@
     @csrf
    
 </form> --}}
-<div   >
-    <a   href="#" data-bs-toggle="modal" class="btn btn-danger "
+<div  class="text-center " >
+    <button    data-bs-toggle="modal" class="btn btn-danger text-center "
        data-bs-target="#delete-house-modal-{{ $house->id }}" ><i
-       class=" fa-solid fa-trash me-2 "></i>Elimina</a>
+       class="text-center fa-solid fa-trash me-2 "></i></button>
 </div>
