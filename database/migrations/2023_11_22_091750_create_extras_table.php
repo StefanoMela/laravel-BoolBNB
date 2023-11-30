@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name', 30);
             $table->string('color', 7);
             $table->string('icon');
+            $table->string('icon_vue');
             $table->timestamps();
         });
     }
