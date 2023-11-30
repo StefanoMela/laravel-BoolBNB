@@ -167,4 +167,45 @@ class HouseController extends Controller
             ;
         }
     }
+
+    public function trash()
+    {
+        $houses = House::orderby('id', 'desc')->onlyTrashed()->paginate(8);
+        return view("admin.houses.trash.index", compact("houses"));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\House  $house
+     * *@return \Illuminate\Http\Response
+     */
+
+    public function forceDestroy(int $id)
+    {
+        $house = House::onlyTrashed()->findOrFail($id);
+      
+
+
+        if ($house->cover_image) {
+            Storage::delete($house->cover_image);
+        }
+
+        $house->forceDelete();
+        return redirect()->route("admin.houses.trash.index")
+            ->with('message_type', 'danger')
+            ->with('message', 'Progetto eliminato con successo');
+        ;
+    }
+
+
+    public function restore(int $id)
+    {
+        $house = House::onlyTrashed()->findOrFail($id);
+        $house->restore();
+        return redirect()->route("admin.houses.trash.index")
+            ->with('message_type', 'success')
+            ->with('message', 'Progetto ripristinato con successo');
+    }
+
 }
