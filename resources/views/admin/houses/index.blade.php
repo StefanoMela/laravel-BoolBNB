@@ -2,10 +2,13 @@
 
 @section('content')
     <div class="container py-5">
-        <button class="btn"><a href="{{route('admin.houses.create')}}">Aggiungi una nuova casa</a></button>
-        <a class="btn btn-outline-danger" href="{{ route('admin.houses.trash.index') }}">Vedi cestino</a>
+        <div class="d-flex gap-2 mb-4"> 
+            <a class="btn btn-outline-success" href="{{ route('admin.houses.create') }}">Aggiungi una nuova casa</a>
+            <a class="btn btn-outline-danger" href="{{ route('admin.houses.trash.index') }}">Vedi cestino</a>
+        </div>
+      
 
-        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-4">
+        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-4 ">
             @foreach ($houses as $house)
                 
             <div class="col">
