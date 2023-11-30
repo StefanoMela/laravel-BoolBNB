@@ -24,5 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('houses', FeaturedHouseController::class);
 Route::apiResource('search', SearchController::class);
+Route::get('/posts-by-category/{category_id}', [PostController::class, 'postsByCategory']);
+Route::post('get-houses-by-filters', [SearchController::class, 'houseByFilters']);
+
+
 Route::get('search/coordinate', [SearchController::class, 'getCoordinate'])->name('search.coordinate');
 Route::apiResource('extras', ExtrasController::class);

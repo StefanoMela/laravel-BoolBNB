@@ -70,9 +70,28 @@ class SearchController extends Controller
         //
     }
 
-    public function getCoordinate(Request $request){
-        dd("ciao");
-        $houses = House::all();
+    public function houseByFilters(Request $request)
+    {
+        $filters = $request->all();
+
+        $houses_query = House::select("id", "title", "description", "address")
+            ->with('extras:id,color,name')
+            ->orderByDesc('id');
+
+        // if (!empty($filters['activeExtras'])) {
+        //     $houses_query->whereIn('extra_id', $filters['activeExtras']);
+        // }
+
+        if (!empty($filters['activeExtras'])) {
+            foreach ($filters['activeExtras'] as $extra) {
+                $houses_query->whereHas('extras', function ($query) use ($extra) {
+                    $query->where('extra_id', $extra);
+                });
+            }
+        }
+
+        $houses = $houses_query->paginate(12);
+
         return response()->json($houses);
     }
 }
