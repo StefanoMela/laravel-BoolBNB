@@ -26,7 +26,12 @@ Route::middleware(['auth', 'verified'])
 ->group(function () {
   
   Route::get('/', [AdminPageController::class, 'index'])->name('home');
+  Route::get('/houses/trash', [HouseController::class,'trash'])->name('houses.trash.index');
+  Route::patch('/houses/trash/{house}/restore', [HouseController::class,'restore'])->name('houses.trash.restore');
+  Route::delete('/houses/trash/{house}', [HouseController::class, 'forceDestroy'])->name('houses.trash.force-destroy');
   Route::resource('houses', HouseController::class);
+
+
 
   });
 

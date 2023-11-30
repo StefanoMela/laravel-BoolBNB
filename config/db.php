@@ -991,41 +991,50 @@ return [
             'name'=> 'cucina', 
             'color'=> '#7A3F98',
             'icon'=> '<i class="fa-solid fa-kitchen-set"></i>',
+            'icon_vue'=> 'fa-solid fa-kitchen-set',
         ],
         [
             'name'=> 'wi-fi', 
             'color'=> '#2ECC71',
             'icon'=> '<i class="fa-solid fa-wifi"></i>',
+            'icon_vue'=> 'fa-solid fa-wifi',
+           
         ],
         [
             'name'=> 'giardino', 
             'color'=> '#F39C12',
             'icon'=> '<i class="fa-solid fa-seedling"></i>',
+            'icon_vue'=> 'fa-solid fa-seedling',
         ],
         [
             'name'=> 'posto auto', 
             'color'=> '#3498DB',
             'icon'=> '<i class="fa-solid fa-square-parking"></i>',
+            'icon_vue'=> 'fa-solid fa-square-parking',
         ],
         [
             'name'=> 'tv', 
             'color'=> '#E74C3C',
             'icon'=> '<i class="fa-solid fa-tv"></i>',
+            'icon_vue'=> 'fa-solid fa-tv',
         ],
         [
             'name'=> 'piscina', 
             'color'=> '#1ABC9C',
             'icon'=> '<i class="fa-solid fa-person-swimming"></i>',
+            'icon_vue'=> 'fa-solid fa-person-swimming',
         ],
         [
             'name'=> 'aria condizionata', 
             'color'=> '#D35400',
             'icon'=> '<i class="fa-solid fa-wind"></i>',
+            'icon_vue'=> 'fa-solid fa-wind',
         ],
         [
             'name'=> 'vista mare', 
             'color'=> '#8E44AD',
             'icon'=> '<i class="fa-solid fa-water"></i>',
+            'icon_vue'=> 'fa-solid fa-water',
         ],
     ],
 

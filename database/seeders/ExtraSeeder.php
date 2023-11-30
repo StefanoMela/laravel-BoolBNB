@@ -24,6 +24,7 @@ class ExtraSeeder extends Seeder
             $extra->name = $_extra['name'];
             $extra->color = $_extra['color'];
             $extra->icon = $_extra['icon'];
+            $extra->icon_vue = $_extra['icon_vue'];
 
             $extra->save();
         }
