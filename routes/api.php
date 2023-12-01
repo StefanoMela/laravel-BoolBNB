@@ -28,5 +28,5 @@ Route::get('/posts-by-category/{category_id}', [PostController::class, 'postsByC
 Route::post('get-houses-by-filters', [SearchController::class, 'houseByFilters']);
 
 
-Route::get('search/coordinate', [SearchController::class, 'getCoordinate'])->name('search.coordinate');
+Route::get('search/{lon}/{lat}/{radius}', [SearchController::class, 'searchAdvanced'])->name('search.advanced');
 Route::apiResource('extras', ExtrasController::class);

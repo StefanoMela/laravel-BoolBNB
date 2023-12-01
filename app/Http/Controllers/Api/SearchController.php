@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Extra;
 use App\Models\House;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -74,16 +75,54 @@ class SearchController extends Controller
     {
         $filters = $request->all();
 
-        $houses_query = House::select("id", "title", "description", "address")
-            ->with('extras:id,color,name')
-            ->orderByDesc('id');
+        $houses_query = House::query();
+        // House::select("id", "title", "description", "address", "cover_image", "address", "longitude", "latitude" )
+        //     ->with('extras:id,color,name')
+        //     ->orderByDesc('id');
 
-        // if (!empty($filters['activeExtras'])) {
-        //     $houses_query->whereIn('extra_id', $filters['activeExtras']);
+        // if (!empty($filters['store.addressSearch'])) {
+        //     return;
         // }
+        
 
-        if (!empty($filters['activeExtras'])) {
-            foreach ($filters['activeExtras'] as $extra) {
+        if ($filters['activeFilters']['activeAddress'] !== null) {
+
+            // * ++++ gestione latitudine e longitudine
+        // *forzo il fatto di non usare la verifica ssl
+        $client = new Client([
+            'verify' => false, // Ignora la verifica SSL
+        ]);
+        // inserisco l'indirizzo fornito nella chiamata api tomtom
+        $position = $client->get('https://api.tomtom.com/search/2/geocode/' . $filters['activeFilters']['activeAddress'] . '.json?key=t7a52T1QnfuvZp7X85QvVlLccZeC5a9P');
+
+        $data_position = json_decode($position->getBody(), true);
+
+        // distribuisco il valore di lat e lon ai campi del db
+        $latitude = $data_position['results'][0]['position']['lat'];
+        $longitude = $data_position['results'][0]['position']['lon'];
+
+        $raggio = $filters['activeFilters']['activeRange'];
+
+            // $raggio = 80;
+            $presetRadius = 6371;
+            //
+            $lat1 = deg2rad($latitude);
+            $lon1 = deg2rad($longitude);
+            
+            //Filtro per distanza
+            
+            $houses_query->selectRaw("*,
+            ($presetRadius * ACOS(
+                COS(RADIANS(latitude)) * COS($lat1) * COS(RADIANS(longitude) - $lon1) +
+                SIN(RADIANS(latitude)) * SIN($lat1)
+            )) AS distance");
+            $houses_query->having('distance', '<', $raggio);
+           
+            $houses_query->orderBy('distance');
+        }
+
+        if (!empty($filters['activeFilters']['activeExtras'])) {
+            foreach ($filters['activeFilters']['activeExtras'] as $extra) {
                 $houses_query->whereHas('extras', function ($query) use ($extra) {
                     $query->where('extra_id', $extra);
                 });
