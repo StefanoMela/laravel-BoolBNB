@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\Api\FeaturedHouseController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\MessageController;
+
+
+
 use App\Http\Controllers\Api\ExtrasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +28,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('houses', FeaturedHouseController::class);
 Route::apiResource('search', SearchController::class);
-Route::get('/posts-by-category/{category_id}', [PostController::class, 'postsByCategory']);
 Route::post('get-houses-by-filters', [SearchController::class, 'houseByFilters']);
+Route::post('message', [MessageController::class, 'store']);
 
 
-Route::get('search/{lon}/{lat}/{radius}', [SearchController::class, 'searchAdvanced'])->name('search.advanced');
+Route::get('search/coordinate', [SearchController::class, 'getCoordinate'])->name('search.coordinate');
 Route::apiResource('extras', ExtrasController::class);
