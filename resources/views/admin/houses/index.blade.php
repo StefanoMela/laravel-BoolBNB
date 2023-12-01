@@ -2,34 +2,31 @@
 
 @section('content')
     <div class="container py-5">
-        <div class="d-flex gap-2 mb-4"> 
+        <div class="d-flex justify-content-between mb-4">
             <a class="btn btn-outline-success" href="{{ route('admin.houses.create') }}">Aggiungi una nuova casa</a>
             <a class="btn btn-outline-danger" href="{{ route('admin.houses.trash.index') }}">Vedi cestino</a>
         </div>
-      
 
-        <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-4 ">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
             @foreach ($houses as $house)
-                
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{asset('/storage/' . $house->cover_image)}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$house->title}}</h4>
-                        <p class="card-text">{{$house->description}}</p>                        
-                        <div class="d-flex  gap-2">
-                            <a class="btn btn-primary" href="{{route('admin.houses.edit', $house)}}"  >Aggiorna</a>
-                            <a class="btn btn-primary" href="{{ route('admin.houses.show', $house) }}"> Dettaglio </a>
-                            @include('admin.houses.partials.delete_button')
-
-                         </div> 
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ asset('/storage/' . $house->cover_image) }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">{{$house->title}}</h4>
+                            <p class="card-text">{{$house->description}}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap ">
+                                <a class="btn btn-outline-primary" href="{{ route('admin.houses.edit', $house) }}">Modifica</a>
+                                <a class="btn btn-outline-primary" href="{{ route('admin.houses.show', $house) }}">Info</a>
+                                @include('admin.houses.partials.delete_button')
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
-            
         </div>
-        <div class="mt-5">
+
+        <div class="mt-5 d-flex justify-content-center">
             {{ $houses->links('pagination::bootstrap-5') }}
         </div>
     </div>

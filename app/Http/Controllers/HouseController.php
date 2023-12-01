@@ -26,6 +26,9 @@ class HouseController extends Controller
     {
         $user_id = Auth::user()->id;
         $houses = House::orderby('id', 'desc')->where('user_id', $user_id)->paginate(12);
+        foreach ($houses as $house) {
+            $house->description = strlen($house->description) > 100 ? substr($house->description, 0, 100) . '...' : $house->description;
+        }
         return view("admin.houses.index", compact("houses"));
     }
 
@@ -171,6 +174,9 @@ class HouseController extends Controller
     public function trash()
     {
         $houses = House::orderby('id', 'desc')->onlyTrashed()->paginate(8);
+        foreach ($houses as $house) {
+            $house->description = strlen($house->description) > 100 ? substr($house->description, 0, 100) . '...' : $house->description;
+        }
         return view("admin.houses.trash.index", compact("houses"));
     }
 
