@@ -22,11 +22,11 @@
                                         <i class="fa-solid fa-arrow-turn-up fa-rotate-270 text-dark me-1"></i>
                                         Ripristina
                                     </a>
-                                    <a href="#" data-bs-toggle="modal"
+                                    {{-- <a href="#" data-bs-toggle="modal"
                                         data-bs-target="#delete-house-modal-{{ $house->id }}" class="btn btn-sm btn-outline-danger">
                                         <i class="fa-solid fa-plane-departure me-1"></i>
                                         Elimina
-                                    </a>
+                                    </a> --}}
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
 
 @section('modals')
     @foreach ($houses as $house)
-        <div class="modal fade" id="delete-house-modal-{{ $house->id }}" tabindex="-1"
+        {{-- <div class="modal fade" id="delete-house-modal-{{ $house->id }}" tabindex="-1"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         {{-- RESTORE --}}
         <div class="modal fade" id="restore-house-modal-{{ $house->id }}" tabindex="-1"
