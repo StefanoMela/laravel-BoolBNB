@@ -18,7 +18,8 @@ class FeaturedHouseController extends Controller
      */
     public function index(House $house)
     {
-         $houses = DB::table('houses')
+         $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
+         ->with('extras:id,name,color,icon,icon_vue')
          ->join('house_sponsorship', 'houses.id', '=', 'house_sponsorship.house_id')
          ->select('houses.*')
          ->paginate(12);
