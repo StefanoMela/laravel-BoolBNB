@@ -129,7 +129,7 @@ class SearchController extends Controller
             }
         }
 
-        $houses = $houses_query->paginate(12);
+        $houses = $houses_query->with('extras:id,name,color,icon,icon_vue')->paginate(12);
 
         return response()->json($houses);
     }
