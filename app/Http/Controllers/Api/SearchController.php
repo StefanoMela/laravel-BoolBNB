@@ -160,38 +160,6 @@ class SearchController extends Controller
             }
         }
 
-
-        // Handle bathrooms filter
-        if (!empty($filters['activeFilters']['bathrooms'])) {
-            $bathrooms = $filters['activeFilters']['bathrooms'];
-            if ($bathrooms === '5') {
-                $houses_query->where('bathrooms', '>=', 5);
-            } else {
-                $houses_query->where('bathrooms', '=', $bathrooms);
-            }
-        }
-
-        // Handle rooms filter
-        if (!empty($filters['activeFilters']['rooms'])) {
-            $rooms = $filters['activeFilters']['rooms'];
-            if ($rooms === '5') {
-                $houses_query->where('rooms', '>=', 5);
-            } else {
-                $houses_query->where('rooms', '=', $rooms);
-            }
-        }
-
-        // Handle beds filter
-        if (!empty($filters['activeFilters']['beds'])) {
-            $beds = $filters['activeFilters']['beds'];
-            if ($beds === '5') {
-                $houses_query->where('beds', '>=', 5);
-            } else {
-                $houses_query->where('beds', '=', $beds);
-            }
-        }
-
-
         $houses = $houses_query->with('extras:id,name,color,icon,icon_vue')->paginate(12);
 
         return response()->json($houses);
