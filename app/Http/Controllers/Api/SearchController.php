@@ -124,7 +124,7 @@ class SearchController extends Controller
         // Handle extra filter
         if (!empty($filters['activeFilters']['activeExtras'])) {
             foreach ($filters['activeFilters']['activeExtras'] as $extra) {
-                $houses_query->orWhereHas('extras', function ($query) use ($extra) {
+                $houses_query->whereHas('extras', function ($query) use ($extra) {
                     $query->where('extra_id', $extra);
                 });
             }
