@@ -37,16 +37,19 @@
 
         </div> --}}
 
-        <div class="form-outline mb-3" id="address-element">
-            <label for="address" class="form-label">Indirizzo {{$essential}}</label>              
-            <div id="address-element"></div>
-            <input type="hidden" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+        <div class="form-outline mb-3" >
+            <div id="address-element" class="form-control">
 
-            @error('address')
-            <div class="invalid-feedback">
-                {{ $message }}
+                <label for="address" class="form-label">Indirizzo {{$essential}}</label>              
+                <div id="address-element"></div>
+                {{-- <input type="hidden" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}"> --}}
+                
+                @error('address')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror 
             </div>
-            @enderror 
         </div>
 
         {{-- Cover Image --}}
@@ -191,5 +194,10 @@
 
 @section('script')
     {{-- @vite('resources/js/confirmDelete.js') --}}
+    <script>
 
+        
+        
+    </script>
+        
 @endsection
