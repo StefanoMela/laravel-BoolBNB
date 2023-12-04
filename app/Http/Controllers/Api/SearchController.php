@@ -83,51 +83,83 @@ class SearchController extends Controller
         // if (!empty($filters['store.addressSearch'])) {
         //     return;
         // }
-        
+
 
         if ($filters['activeFilters']['activeAddress'] !== null) {
 
             // * ++++ gestione latitudine e longitudine
-        // *forzo il fatto di non usare la verifica ssl
-        $client = new Client([
-            'verify' => false, // Ignora la verifica SSL
-        ]);
-        // inserisco l'indirizzo fornito nella chiamata api tomtom
-        $position = $client->get('https://api.tomtom.com/search/2/geocode/' . $filters['activeFilters']['activeAddress'] . '.json?key=t7a52T1QnfuvZp7X85QvVlLccZeC5a9P');
+            // *forzo il fatto di non usare la verifica ssl
+            $client = new Client([
+                'verify' => false, // Ignora la verifica SSL
+            ]);
+            // inserisco l'indirizzo fornito nella chiamata api tomtom
+            $position = $client->get('https://api.tomtom.com/search/2/geocode/' . $filters['activeFilters']['activeAddress'] . '.json?key=t7a52T1QnfuvZp7X85QvVlLccZeC5a9P');
 
-        $data_position = json_decode($position->getBody(), true);
+            $data_position = json_decode($position->getBody(), true);
 
-        // distribuisco il valore di lat e lon ai campi del db
-        $latitude = $data_position['results'][0]['position']['lat'];
-        $longitude = $data_position['results'][0]['position']['lon'];
+            // distribuisco il valore di lat e lon ai campi del db
+            $latitude = $data_position['results'][0]['position']['lat'];
+            $longitude = $data_position['results'][0]['position']['lon'];
 
-        $raggio = $filters['activeFilters']['activeRange'];
+            $raggio = $filters['activeFilters']['activeRange'];
 
             // $raggio = 80;
             $presetRadius = 6371;
             //
             $lat1 = deg2rad($latitude);
             $lon1 = deg2rad($longitude);
-            
+
             //Filtro per distanza
-            
+
             $houses_query->selectRaw("*,
             ($presetRadius * ACOS(
                 COS(RADIANS(latitude)) * COS($lat1) * COS(RADIANS(longitude) - $lon1) +
                 SIN(RADIANS(latitude)) * SIN($lat1)
             )) AS distance");
             $houses_query->having('distance', '<', $raggio);
-           
+
             $houses_query->orderBy('distance');
         }
 
+        // Handle extra filter
         if (!empty($filters['activeFilters']['activeExtras'])) {
             foreach ($filters['activeFilters']['activeExtras'] as $extra) {
-                $houses_query->whereHas('extras', function ($query) use ($extra) {
+                $houses_query->orWhereHas('extras', function ($query) use ($extra) {
                     $query->where('extra_id', $extra);
                 });
             }
         }
+
+        // Handle bathrooms filter
+        if (!empty($filters['activeFilters']['bathrooms'])) {
+            $bathrooms = $filters['activeFilters']['bathrooms'];
+            if ($bathrooms === '5') {
+                $houses_query->where('bathrooms', '>=', 5);
+            } else {
+                $houses_query->where('bathrooms', '=', $bathrooms);
+            }
+        }
+
+        // Handle rooms filter
+        if (!empty($filters['activeFilters']['rooms'])) {
+            $rooms = $filters['activeFilters']['rooms'];
+            if ($rooms === '5') {
+                $houses_query->where('rooms', '>=', 5);
+            } else {
+                $houses_query->where('rooms', '=', $rooms);
+            }
+        }
+
+        // Handle beds filter
+        if (!empty($filters['activeFilters']['beds'])) {
+            $beds = $filters['activeFilters']['beds'];
+            if ($beds === '5') {
+                $houses_query->where('beds', '>=', 5);
+            } else {
+                $houses_query->where('beds', '=', $beds);
+            }
+        }
+
 
         $houses = $houses_query->paginate(12);
 
