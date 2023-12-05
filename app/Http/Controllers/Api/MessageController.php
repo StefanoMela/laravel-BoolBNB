@@ -33,10 +33,10 @@ class MessageController extends Controller
             'text' => 'required',
         ];
         $customMessages = [
-            'email.required' => 'Il campo email è obbligatorio.',
+            'email.required' => 'Il campo E-mail è obbligatorio.',
             'email.email' => 'Inserisci un indirizzo email valido.',
-            'name.required' => 'Il campo nome è obbligatorio.',
-            'text.required' => 'Il campo testo è obbligatorio.',
+            'name.required' => 'Il campo Nome è obbligatorio.',
+            'text.required' => 'Il campo Messaggio è obbligatorio.',
         ];
         $validator = Validator::make($request->input('params'), $rules,$customMessages);
 
