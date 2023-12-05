@@ -18,7 +18,8 @@ class FeaturedHouseController extends Controller
      */
     public function index(House $house)
     {
-         $houses = DB::table('houses')
+         $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
+         ->with('extras:id,name,color,icon,icon_vue')
          ->join('house_sponsorship', 'houses.id', '=', 'house_sponsorship.house_id')
          ->select('houses.*')
          ->paginate(12);
@@ -51,7 +52,7 @@ class FeaturedHouseController extends Controller
     {
         
         $house = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
-        ->where('id', $id)->with('user:id,name,last_name')->first();
+        ->where('id', $id)->with('user:id,name,last_name','extras')->first();
         // modifica path immagine per farla leggere correttamente da vue
         $house->cover_image = $house->getAbsUriImage();
 
