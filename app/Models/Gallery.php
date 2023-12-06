@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['house_id','image'];
+
     public function house()
     {
         return $this->belongsTo(House::class);

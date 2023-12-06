@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\House;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -35,7 +38,23 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $gallery = new Gallery;
+
+        // Validate the request
+        $data = $request->validate([
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $image) {
+                Storage::put('uploads/houses/gallery_images', $image);
+            }
+        };
+        dd($request);
+        $gallery->fill($data);
+        $gallery->save();
+        return redirect()->route('admin.houses.index')->with('success', 'Images uploaded successfully');
     }
 
     /**
