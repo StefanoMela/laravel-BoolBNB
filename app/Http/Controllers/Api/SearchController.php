@@ -76,14 +76,6 @@ class SearchController extends Controller
         $filters = $request->all();
 
         $houses_query = House::query();
-        // House::select("id", "title", "description", "address", "cover_image", "address", "longitude", "latitude" )
-        //     ->with('extras:id,color,name')
-        //     ->orderByDesc('id');
-
-        // if (!empty($filters['store.addressSearch'])) {
-        //     return;
-        // }
-
 
         if ($filters['activeFilters']['activeAddress'] !== null) {
 
@@ -161,6 +153,11 @@ class SearchController extends Controller
         }
 
         $houses = $houses_query->with('extras:id,name,color,icon,icon_vue')->paginate(12);
+
+        foreach($houses as $house){
+              $house->description = $house->getAbstract(100);
+              $house->cover_image = Storage::url($house->cover_image);
+         };
 
         return response()->json($houses);
     }
