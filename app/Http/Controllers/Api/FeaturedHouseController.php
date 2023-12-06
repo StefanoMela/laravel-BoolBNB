@@ -51,7 +51,7 @@ class FeaturedHouseController extends Controller
     public function show($id)
     {
         
-        $house = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
+        $house = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address', 'longitude', 'latitude')
         ->where('id', $id)->with('user:id,name,last_name','extras')->first();
         // modifica path immagine per farla leggere correttamente da vue
         $house->cover_image = $house->getAbsUriImage();
