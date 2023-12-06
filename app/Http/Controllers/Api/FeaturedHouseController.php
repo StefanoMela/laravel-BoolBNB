@@ -24,7 +24,7 @@ class FeaturedHouseController extends Controller
          ->select('houses.*')
          ->paginate(12);
          foreach($houses as $house){
-            //   $house->description = $house->getAbstract(100);
+              $house->description = $house->getAbstract(100);
               $house->cover_image = Storage::url($house->cover_image);
          };
 
@@ -51,11 +51,14 @@ class FeaturedHouseController extends Controller
     public function show($id)
     {
         
-        $house = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
-        ->where('id', $id)->with('user:id,name,last_name','extras')->first();
-        // modifica path immagine per farla leggere correttamente da vue
+        $house = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address', 'longitude', 'latitude')
+            ->where('id', $id)->with('user:id,name,last_name','extras')->first();
+            // modifica path immagine per farla leggere correttamente da vue
+            
+            if(!$house) 
+            abort(404, 'House not found');
+        
         $house->cover_image = $house->getAbsUriImage();
-
         // $house = House::find($id);
 
         return response()->json($house);
