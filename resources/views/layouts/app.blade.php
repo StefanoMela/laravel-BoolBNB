@@ -42,12 +42,25 @@
 
   <body>
     <div id="app">
+      <div id="loading" style="display: none;">
+        @include('layouts.loading') <!-- Includi la vista del caricamento -->
+      </div>
       @include('partials._navbar')
 
       <main class="">
         @yield('content')
       </main>
     </div>
+    <script>
+      // Mostra la pagina di caricamento durante il caricamento delle altre pagine
+      document.addEventListener('DOMContentLoaded', function () {
+          document.getElementById('loading').style.display = 'block';
+      });
+
+      window.onload = function () {
+          document.getElementById('loading').style.display = 'none';
+      };
+  </script>
     @yield('modals')
     @yield('scripts')
   </body>
