@@ -42,6 +42,9 @@
 
   <body>
     <div id="app">
+      <div id="loading" style="display: none;">
+        @include('layouts.loading') <!-- Includi la vista del caricamento -->
+      </div>
       @include('partials._navbar')
 
       <main class="">
@@ -50,6 +53,16 @@
     </div>
     @yield('modals')
     @yield('scripts')
+    <script>
+      // Mostra la pagina di caricamento durante il caricamento delle altre pagine
+      document.onreadystatechange = function () {
+          if (document.readyState === 'loading') {
+              document.getElementById('loading').style.display = 'block';
+          } else {
+              document.getElementById('loading').style.display = 'none';
+          }
+      };
+  </script>
   </body>
 
 </html>
