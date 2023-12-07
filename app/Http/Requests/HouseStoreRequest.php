@@ -33,7 +33,7 @@ class HouseStoreRequest extends FormRequest
         'beds' => 'required|integer|min:1',
         'bathrooms' => 'required|integer|min:1',
         'cover_image' => 'required|image',
-        'extras' => ['required', 'exists:extras,id'],        
+        'extras' => ['required', 'exists:extras,id'],
         ];
     }
 

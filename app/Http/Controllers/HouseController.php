@@ -53,13 +53,12 @@ class HouseController extends Controller
      */
     public function store(HouseStoreRequest $request)
     {
-        // dd($request);
         $data = $request->validated();
 
         // prendo id user dallo user loggato
         $user = Auth::user();
 
-        $house = new House;       
+        $house = new House;
         
         $house->user_id = Auth::user()->id;
         if($request->hasFile('cover_image')){
@@ -85,6 +84,17 @@ class HouseController extends Controller
         
         $house->fill($data);
         $house->save();
+
+        if ($request->hasFile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $image) {
+                $gallery = new Gallery;
+                $gallery->house_id = $house->id;
+                $path = $image->store('uploads/houses/gallery_images');
+                $gallery->fill(['image' => $path]);
+                $gallery->save();
+            }
+        };
 
         // dd($house);
         

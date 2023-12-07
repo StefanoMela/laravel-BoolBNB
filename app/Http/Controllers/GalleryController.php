@@ -38,27 +38,8 @@ class GalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, House $house)
+    public function store(Request $request)
     {
-        
-        // Validate the request
-        $request->validate([
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'house_id' => 'exist:houses,id',
-        ]);
-        
-        if ($request->hasFile('image', 'house_id')) {
-            $images = $request->file('image');
-            foreach ($images as $image) {
-                $gallery = new Gallery;
-                $gallery->house_id = $house->id;
-                $path = $image->store('uploads/houses/gallery_images');
-                $gallery->fill(['image' => $path]);
-                $gallery->save();
-            }
-        };
-        
-        return redirect()->route('admin.houses.show', $house->id);
     }
 
     /**
