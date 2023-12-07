@@ -51,18 +51,18 @@
         @yield('content')
       </main>
     </div>
-    @yield('modals')
-    @yield('scripts')
     <script>
       // Mostra la pagina di caricamento durante il caricamento delle altre pagine
-      document.onreadystatechange = function () {
-          if (document.readyState === 'loading') {
-              document.getElementById('loading').style.display = 'block';
-          } else {
-              document.getElementById('loading').style.display = 'none';
-          }
+      document.addEventListener('DOMContentLoaded', function () {
+          document.getElementById('loading').style.display = 'block';
+      });
+
+      window.onload = function () {
+          document.getElementById('loading').style.display = 'none';
       };
   </script>
+    @yield('modals')
+    @yield('scripts')
   </body>
 
 </html>
