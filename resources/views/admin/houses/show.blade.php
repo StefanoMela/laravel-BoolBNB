@@ -42,10 +42,24 @@
       @endforeach
     </div>
   </div>
-
-
 </div>
 
-
-
-@endsection
+<div class="card-deck justify-content-around text-center">
+  @foreach ($sponsorships as $sponsor)
+  <form action="{{route('admin.payment')}}" method="post" enctype="multipart/form-data" class="card col-lg-4 mt-4 mb-5 border border-primary text-primary pt-3 pb-3">
+  
+      <h2 class="card-title">{{$sponsor->name}}</h2>
+      <h2 class="card-title">€ {{$sponsor->price}}</h2>
+      <hr>
+      <h5 class="card-title">Sponsorizza il tuo appartamento per {{$sponsor->duration}} ore!</h5>
+      <input type="hidden" name="house_id" value="{{$house->id}}">
+      <input type="hidden" name="price" value="{{$sponsor->price}}">
+      <input type="hidden" name="sponsorship_id" value="{{$sponsor->id}}">
+      @csrf
+      @method('GET')
+      <input type="submit" class="btn btn-success" value="Acquista">
+  
+  </form>
+  @endforeach
+</div>
+@endsection 
