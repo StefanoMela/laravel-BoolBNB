@@ -29,7 +29,6 @@ class SponsorshipController extends Controller
         $start_date = date_create();
 
         if ($data['sponsorship_id'] == 1) {
-
             date_add($now, date_interval_create_from_date_string("24 hours"));
             $expiration = date_format($now, 'Y-m-d H:i:s');
         } elseif ($data['sponsorship_id'] == 2) {
