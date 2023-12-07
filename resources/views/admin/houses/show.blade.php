@@ -5,7 +5,7 @@
   <h1>{{ $house->title }}</h1>
   <div class="row">
     <div class="col-6">
-      <img src="{{asset('/storage/'.$house->cover_image)}}" alt="" class="img-fluid">
+      <img src="{{ $house->cover_image == 'https://placehold.co/600x400' ? 'https://placehold.co/600x400' : asset('/storage/'. $house->cover_image) }}" alt="" class="img-fluid">
     </div>
     <div class="col-6"></div>
     <div class="col-6 my-4">
@@ -18,7 +18,10 @@
       </p>
     </div>
     <div class="col-6 my-4 border p-4 rounded-pill">
-      Qui andranno i messaggi
+      @foreach ($house->messages as $message)
+      <p>{{$message->email}}: {{$message->text}}</p>
+          
+      @endforeach
     </div>
   </div>
   <div class="row">
@@ -42,24 +45,30 @@
       @endforeach
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-6">
+        <p>
+            <strong>Promozioni:</strong>
+            {{-- @dd($house_sponsorship, $sponsorship) --}}
+            @if ($house_sponsorship && $sponsorship)
+            <div class="card-deck justify-content-around text-center">
+              <h2 class="card-title">{{$sponsorship->name}}</h2>
+              <h2 class="card-title">€ {{$sponsorship->price}}</h2>
+              <p>La tua promozione scadrà il: {{$house_sponsorship->end_date}}</p>
+            </div>
+            @else
+            <span>Non sponsorizzato</span>
+            <div>              
+              <a href="{{ route('admin.houses.sponsorship', $house) }}" class="btn btn-dark">Sponsorizza il tuo appartamento</a>
+            </div>
+            @endif
+          
+        </p>
+
+    </div>
+  </div>
 </div>
 
-<div class="card-deck justify-content-around text-center">
-  @foreach ($sponsorships as $sponsor)
-  <form action="{{route('admin.payment')}}" method="post" enctype="multipart/form-data" class="card col-lg-4 mt-4 mb-5 border border-primary text-primary pt-3 pb-3">
-  
-      <h2 class="card-title">{{$sponsor->name}}</h2>
-      <h2 class="card-title">€ {{$sponsor->price}}</h2>
-      <hr>
-      <h5 class="card-title">Sponsorizza il tuo appartamento per {{$sponsor->duration}} ore!</h5>
-      <input type="hidden" name="house_id" value="{{$house->id}}">
-      <input type="hidden" name="price" value="{{$sponsor->price}}">
-      <input type="hidden" name="sponsorship_id" value="{{$sponsor->id}}">
-      @csrf
-      @method('GET')
-      <input type="submit" class="btn btn-success" value="Acquista">
-  
-  </form>
-  @endforeach
-</div>
+
 @endsection 

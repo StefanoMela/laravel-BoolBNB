@@ -6,6 +6,7 @@ use App\Http\Requests\HouseStoreRequest;
 use App\Http\Requests\HouseUpdateRequest;
 use App\Models\Extra;
 use App\Models\House;
+use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class HouseController extends Controller
 {
@@ -25,7 +27,11 @@ class HouseController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $houses = House::orderby('id', 'desc')->where('user_id', $user_id)->paginate(12);
+        $houses = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address')
+        ->with('extras:id,name,color,icon,icon_vue', 'sponsorships:id,name,price,duration')
+        ->orderby('id', 'desc')
+        ->where('user_id', $user_id)
+        ->paginate(12);
         foreach ($houses as $house) {
             $house->description = strlen($house->description) > 100 ? substr($house->description, 0, 100) . '...' : $house->description;
         }
@@ -101,9 +107,16 @@ class HouseController extends Controller
      */
     public function show(House $house)
     {
+        $user_id = Auth::user()->id;
+        if ($user_id !== $house->user_id) {
+            return redirect()->route('admin.houses.index');
+        }
         $extras = Extra::all();  
         $user = Auth::user();
-        return view('admin.houses.show', compact('house', 'user', 'extras'));
+        $sponsorship = $house->sponsorships->last();
+        $house_sponsorship = DB::table('house_sponsorship')->where('house_id', $house->id)->orderByDesc('id')->first();
+        // dd($sponsorships);
+        return view('admin.houses.show', compact('house', 'user', 'extras', 'sponsorship', 'house_sponsorship'));
     }
 
     /**

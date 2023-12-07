@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
+use App\Http\Controllers\SponsorshipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::middleware(['auth', 'verified'])
   Route::patch('/houses/trash/{house}/restore', [HouseController::class,'restore'])->name('houses.trash.restore');
   Route::delete('/houses/trash/{house}', [HouseController::class, 'forceDestroy'])->name('houses.trash.force-destroy');
   Route::resource('houses', HouseController::class);
+  
+  Route::get('/houses/{house}/sponsorship', [SponsorshipController::class, 'selectSponsorship'])->name('houses.sponsorship');
+  Route::post('/houses/{house}/sponsorship/payment', [SponsorshipController::class, 'payment'])->name('sponsorship.payment');
 
 
 

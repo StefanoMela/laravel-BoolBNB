@@ -11,7 +11,7 @@
             @foreach ($houses as $house)
                 <div class="col">
                     <div class="card h-100">
-                        <img src="{{ asset('/storage/' . $house->cover_image) }}" class="card-img-top" alt="...">
+                        <img src="{{ $house->cover_image == 'https://placehold.co/600x400' ? 'https://placehold.co/600x400' : asset('/storage/'. $house->cover_image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h4 class="card-title">{{$house->title}}</h4>
                             <p class="card-text">{{$house->description}}</p>
