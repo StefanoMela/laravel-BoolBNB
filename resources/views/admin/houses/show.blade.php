@@ -17,12 +17,20 @@
         {{ $house->address }}
       </p>
     </div>
+    {{-- @dd($house->messages->toArray()) --}}
+    @if ($house->messages->toArray())
+      <div class="col-6 my-4 border p-4 rounded-pill">
+        @foreach ($house->messages as $message)
+        <p>{{$message->email}}: {{$message->text}}</p>
+        <p>ciao</p>
+            
+        @endforeach
+      </div>
+    @else
     <div class="col-6 my-4 border p-4 rounded-pill">
-      @foreach ($house->messages as $message)
-      <p>{{$message->email}}: {{$message->text}}</p>
-          
-      @endforeach
+      <p>Nessun messagio ricevuto</p>
     </div>
+    @endif
   </div>
   <div class="row">
     <h3>Caratteristiche</h3>
