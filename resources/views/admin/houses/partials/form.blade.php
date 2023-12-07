@@ -169,8 +169,8 @@
     {{-- BTNS send form and cancel --}}
     <div class="card-footer text-end my-2 d-flex justify-content-end gap-2">
         
-        <a href="{{ route('admin.houses.index')}}" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i>&nbsp;Cancel</a>
-        <button type="submit" class="btn btn-success {{$btnClass}}"><i class="fa-solid fa-save"></i>&nbsp;Submit</button>
+        <a href="{{ route('admin.houses.index')}}" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i>&nbsp;Indietro</a>
+        <button type="submit" class="btn btn-success {{$btnClass}}"><i class="fa-solid fa-save"></i>&nbsp;Salva</button>
         
         @if($methodRoute == 'PATCH')
         @include('admin.houses.partials.delete_button')

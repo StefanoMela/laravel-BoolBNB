@@ -124,7 +124,7 @@ class SearchController extends Controller
         // Handle extra filter
         if (!empty($filters['activeFilters']['activeExtras'])) {
             foreach ($filters['activeFilters']['activeExtras'] as $extra) {
-                $houses_query->orWhereHas('extras', function ($query) use ($extra) {
+                $houses_query->whereHas('extras', function ($query) use ($extra) {
                     $query->where('extra_id', $extra);
                 });
             }
@@ -160,8 +160,14 @@ class SearchController extends Controller
             }
         }
 
+        $houses = $houses_query->with('extras:id,name,color,icon,icon_vue')
+        ->orderBy('id', 'desc')
+        ->paginate(12);
 
-        $houses = $houses_query->paginate(12);
+        foreach($houses as $house){
+              $house->description = $house->getAbstract(100);
+              $house->cover_image = Storage::url($house->cover_image);
+         };
 
         return response()->json($houses);
     }
