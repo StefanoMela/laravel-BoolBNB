@@ -103,7 +103,7 @@ class HouseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\House  $house
-     * @return \Illuminate\Http\Response
+     * return \Illuminate\Http\Response
      */
     public function show(House $house)
     {
