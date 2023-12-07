@@ -33,8 +33,7 @@ Route::middleware(['auth', 'verified'])
     Route::resource('houses', HouseController::class);
 
     Route::get('/houses/{house}/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-
-    Route::post('/houses/gallery/upload', [GalleryController::class,'store'])->name('gallery.upload');
+    Route::post('/houses/{house}/gallery/upload', [GalleryController::class,'store'])->name('gallery.upload');
   });
 
 require __DIR__ . '/auth.php';

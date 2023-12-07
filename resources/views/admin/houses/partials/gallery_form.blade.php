@@ -1,33 +1,35 @@
 {{-- New Gallery Upload Form --}}
-<form action="{{ route('admin.gallery.upload', $house->id) }}" id="galleryForm" method="POST" class="my-2"
-    enctype="multipart/form-data">
-    @csrf
-    <div class="card">
-        <div class="card-header">
-            <h2 class="text-center mb-2">Gallery Upload</h2>
-        </div>
-        <div class="card-body">
-            {{-- Gallery Images --}}
-            <div class="mb-3">
-                <label for="image" class="form-label">Gallery Images</label>
-                <input type="file" multiple class="form-control @error('image') is-invalid @enderror" id="image"
-                    name="image[]" onchange="previewImages(event)">
-                @error('image')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+<div class="container">
+    <form action="{{ route('admin.gallery.upload', $house->id) }}" id="galleryForm" method="POST" class="my-2"
+        enctype="multipart/form-data">
+        @csrf
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center mb-2">Gallery Upload</h2>
             </div>
-            {{-- Image Preview Container --}}
-            <div id="imagePreviewContainer" class="row mt-3"></div>
+            <div class="card-body">
+                {{-- Gallery Images --}}
+                <div class="mb-3">
+                    <label for="image" class="form-label">Gallery Images</label>
+                    <input type="file" multiple class="form-control @error('image') is-invalid @enderror" id="image"
+                        name="image[]" onchange="previewImages(event)">
+                    @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                {{-- Image Preview Container --}}
+                <div id="imagePreviewContainer" class="row mt-3"></div>
+            </div>
+            {{-- BTNS send gallery form and cancel --}}
+            <div class="card-footer text-end my-2 d-flex justify-content-end gap-2">
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-save"></i>&nbsp;Submit
+                    Gallery</button>
+            </div>
         </div>
-        <input type="hidden" name="house_id" id="house_id" value="{{$house->id}}">
-        {{-- BTNS send gallery form and cancel --}}
-        <div class="card-footer text-end my-2 d-flex justify-content-end gap-2">
-            <button type="submit" class="btn btn-success"><i class="fa-solid fa-save"></i>&nbsp;Submit Gallery</button>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 
 @section('scripts')
 <script>

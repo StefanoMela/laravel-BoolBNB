@@ -15,9 +15,11 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(House $house)
     {
-        //
+        $house = House::find($house->id);
+
+        return view('admin.houses.gallery',['house' => $house]);
     }
 
     /**
@@ -36,25 +38,27 @@ class GalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, House $house)
     {
-        $gallery = new Gallery;
-
+        
         // Validate the request
-        $data = $request->validate([
+        $request->validate([
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'house_id' => 'exist:houses,id',
         ]);
-
-        if ($request->hasFile('image')) {
+        
+        if ($request->hasFile('image', 'house_id')) {
             $images = $request->file('image');
             foreach ($images as $image) {
-                Storage::put('uploads/houses/gallery_images', $image);
+                $gallery = new Gallery;
+                $gallery->house_id = $house->id;
+                $path = $image->store('uploads/houses/gallery_images');
+                $gallery->fill(['image' => $path]);
+                $gallery->save();
             }
         };
-        dd($request);
-        $gallery->fill($data);
-        $gallery->save();
-        return redirect()->route('admin.houses.index')->with('success', 'Images uploaded successfully');
+        
+        return redirect()->route('admin.houses.show', $house->id);
     }
 
     /**

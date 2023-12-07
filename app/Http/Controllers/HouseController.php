@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HouseStoreRequest;
 use App\Http\Requests\HouseUpdateRequest;
 use App\Models\Extra;
+use App\Models\Gallery;
 use App\Models\House;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -103,7 +104,9 @@ class HouseController extends Controller
     {
         $extras = Extra::all();  
         $user = Auth::user();
-        return view('admin.houses.show', compact('house', 'user', 'extras'));
+        $gallery_images = Gallery::all()->where('house_id',$house->id);
+
+        return view('admin.houses.show', compact('house', 'user', 'extras', 'gallery_images'));
     }
 
     /**
