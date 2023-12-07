@@ -6,6 +6,7 @@ use App\Http\Requests\HouseStoreRequest;
 use App\Http\Requests\HouseUpdateRequest;
 use App\Models\Extra;
 use App\Models\House;
+use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -97,13 +98,14 @@ class HouseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\House  $house
-     * @return \Illuminate\Http\Response
+     * return \Illuminate\Http\Response
      */
     public function show(House $house)
     {
         $extras = Extra::all();  
         $user = Auth::user();
-        return view('admin.houses.show', compact('house', 'user', 'extras'));
+        $sponsorships= Sponsorship::all();
+        return view('admin.houses.show', compact('house', 'user', 'extras','sponsorships'));
     }
 
     /**

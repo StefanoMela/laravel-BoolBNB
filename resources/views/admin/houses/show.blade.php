@@ -46,7 +46,7 @@
 
 <div class="card-deck justify-content-around text-center">
   @foreach ($sponsorships as $sponsor)
-  <form action="{{route('admin.payment')}}" method="post" enctype="multipart/form-data" class="card col-lg-4 mt-4 mb-5 border border-primary text-primary pt-3 pb-3">
+  <form action="#" method="post" enctype="multipart/form-data" class="card col-lg-4 mt-4 mb-5 border border-primary text-primary pt-3 pb-3">
   
       <h2 class="card-title">{{$sponsor->name}}</h2>
       <h2 class="card-title">€ {{$sponsor->price}}</h2>
