@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\House;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -12,9 +15,11 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(House $house)
     {
-        //
+        $house = House::find($house->id);
+
+        return view('admin.houses.gallery',['house' => $house]);
     }
 
     /**
@@ -35,7 +40,6 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**

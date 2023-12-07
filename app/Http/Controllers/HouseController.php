@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HouseStoreRequest;
 use App\Http\Requests\HouseUpdateRequest;
 use App\Models\Extra;
+use App\Models\Gallery;
 use App\Models\House;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
@@ -58,13 +59,12 @@ class HouseController extends Controller
      */
     public function store(HouseStoreRequest $request)
     {
-        // dd($request);
         $data = $request->validated();
 
         // prendo id user dallo user loggato
         $user = Auth::user();
 
-        $house = new House;       
+        $house = new House;
         
         $house->user_id = Auth::user()->id;
         if($request->hasFile('cover_image')){
@@ -91,6 +91,17 @@ class HouseController extends Controller
         $house->fill($data);
         $house->save();
 
+        if ($request->hasFile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $image) {
+                $gallery = new Gallery;
+                $gallery->house_id = $house->id;
+                $path = $image->store('uploads/houses/gallery_images');
+                $gallery->fill(['image' => $path]);
+                $gallery->save();
+            }
+        };
+
         // dd($house);
         
         if(Arr::exists($data, "extras")) $house->extras()->attach($data["extras"]);
@@ -113,10 +124,12 @@ class HouseController extends Controller
         }
         $extras = Extra::all();  
         $user = Auth::user();
+        $gallery_images = Gallery::all()->where('house_id',$house->id);
+
         $sponsorship = $house->sponsorships->last();
         $house_sponsorship = DB::table('house_sponsorship')->where('house_id', $house->id)->orderByDesc('id')->first();
         // dd($sponsorships);
-        return view('admin.houses.show', compact('house', 'user', 'extras', 'sponsorship', 'house_sponsorship'));
+        return view('admin.houses.show', compact('house', 'user', 'extras', 'gallery_images', 'sponsorship', 'house_sponsorship'));
     }
 
     /**
