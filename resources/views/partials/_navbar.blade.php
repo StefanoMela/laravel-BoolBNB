@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="http://localhost:5173/">BoolBnb</a>
+    <a class="navbar-brand" href="http://localhost:5173/">fix img logo<img src="public\storage\uploads\logoNav.png" alt=""></a>
     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
       aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.houses.index') }}">My Houses</a>
+            <a class="nav-link" href="{{ route('admin.houses.index') }}">Le tue Case</a>
           </li>
           
         @endguest
