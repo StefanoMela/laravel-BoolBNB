@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h1>{{ $house->title }}</h1>
+  <h1 class="my-3">{{ $house->title }}</h1>
   <div class="row">
     <div class="col-6">
       <img
@@ -22,20 +22,27 @@
       </div>
     </div>
     <div class="col-6 my-4">
+      <div>
+        <p>
+        <strong>Descrizione: <br></strong>
+          @php
+          $descriptionTagliata = str_split($house->description, 70);
+          echo implode('<br>', $descriptionTagliata);
+        @endphp        </p>
+      </div>
+      
+      <p><strong>Intestatario:</strong>  {{ $user->name }} {{$user->last_name}}</p>
       <p>
-        {{ $house->description }}
-      </p>
-      <p>Intestatario: {{ $user->name }} {{$user->last_name}}</p>
-      <p>
-        {{ $house->address }}
+        <strong>Indirizzo: </strong>{{ $house->address }}
       </p>
     </div>
     {{-- @dd($house->messages->toArray()) --}}
     @if ($house->messages->toArray())
-    <div class="col-6 my-4 border p-4 rounded-pill">
+    <div class="col-6 my-4 border p-4 ">
+      <h4 class="mb-5">lista messaggi ricevuti: </h4>
       @foreach ($house->messages as $message)
-      <p>{{$message->email}}: {{$message->text}}</p>
-      <p>ciao</p>
+      <p><strong>E-mail Mittente:</strong>  {{$message->email}} <br><strong>Testo messaggio:</strong>  {{$message->text}} </p>
+      <hr>
 
       @endforeach
     </div>
@@ -45,7 +52,7 @@
     </div>
     @endif
   </div>
-  <div class="row">
+  <div class="row"> 
     <h3>Caratteristiche</h3>
     <div class="col-6">
       <p><b>Stanze:</b> {{$house->rooms}}</p>
@@ -59,7 +66,7 @@
   </div>
   <div class="row">
     <h3>Servizi aggiuntivi</h3>
-    <div class="col-6 d-flex justify-content-between mb-5 mt-3">
+    <div class="col-6 d-flex gap-3 mb-5 mt-3">
       @foreach($house->extras as $extra)
       <div class="d-flex flex-column align-items-center">
         <div>{!! $extra->icon !!}</div>
