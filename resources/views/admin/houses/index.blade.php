@@ -11,13 +11,13 @@
             @foreach ($houses as $house)
                 <div class="col">
                     <div class="card h-100">
-                        <img src="{{ asset('/storage/' . $house->cover_image) }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('/storage/' . $house->cover_image) }}" class="card-img-fluid" style="width: 100%" alt="...">
                         <div class="card-body">
                             <h4 class="card-title">{{$house->title}}</h4>
                             <p class="card-text">{{$house->description}}</p>
-                            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap ">
-                                <a class="btn btn-outline-primary" href="{{ route('admin.houses.edit', $house) }}">Modifica</a>
-                                <a class="btn btn-outline-primary" href="{{ route('admin.houses.show', $house) }}">Info</a>
+                            <div class="d-flex  align-items-center gap-2  ">
+                                <a class="btn btn-outline-primary " href="{{ route('admin.houses.edit', $house) }}">Modifica</a>
+                                <a class="btn btn-outline-primary " href="{{ route('admin.houses.show', $house) }}">Info</a>
                                 @include('admin.houses.partials.delete_button')
                             </div>
                         </div>

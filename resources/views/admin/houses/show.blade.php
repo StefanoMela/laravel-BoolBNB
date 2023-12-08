@@ -17,7 +17,7 @@
         {{ $house->address }}
       </p>
     </div>
-    <div class="col-6 my-4 border p-4 rounded-pill">
+    <div class="col-6 my-4 border p-4 rounded text-center">
       Qui andranno i messaggi
     </div>
   </div>
