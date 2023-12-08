@@ -40,7 +40,7 @@
       @endforeach
     </div>
     @else
-    <div class="col-6 my-4 border p-4 rounded-pill">
+    <div class="col-6 my-4 border p-4 rounded">
       <p>Nessun messagio ricevuto</p>
     </div>
     @endif
