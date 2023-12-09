@@ -43,5 +43,16 @@ class House extends Model
     }
     public function getAbstract($chars = 50 ){
         return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . "..." : $this->description ;
-    }    
+    }  
+    public function getMessagge(){
+        $messages = $this->messages->toArray();
+        return $messages ? "<i class='fa-solid fa-message'></i>" : null ;
+    }  
+    public function getSponsorship(){        
+            if ($this->sponsorships->toArray()) {
+                return "<i class='fa-solid fa-star'></i>";
+            } else {
+                return null;
+            };
+    }
 }
