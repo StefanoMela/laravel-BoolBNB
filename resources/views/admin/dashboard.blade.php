@@ -1,110 +1,135 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
         {{ __('Dashboard') }}
     </h2>
-    @dump($houses_sponsorship, $houses)
-    <div>
-        @foreach ($houses_sponsorship as $item)
-            <div>{{$item->id}}</div>
-        @endforeach
+    @if ($houses->isEmpty())
+    <div class="mb-4">
+        <div>
+            <p>Nessuna casa nella lista</p>
+        </div>
+        <div>
+            <a class="btn btn-outline-success" href="{{ route('admin.houses.create') }}">Aggiungi una nuova casa</a>
+        </div>
     </div>
-    <div class="row justify-content-center g-2">
+    
         
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">My Houses</div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Message</th>
-                            <th scope="col">Sponsorship</th>
-                            <th scope="col"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($houses as $house)
-                            {{-- @dump($house) --}}
-                                <tr>
-                                    <th scope="row">{{ $loop->index+1}}</th>
-                                    <td>{{$house->title}}</td>
-                                    <td>{!!$house->getMessagge()!!}</td>
-                                    <td>{!!$house->getSponsorship($houses_sponsorship)!!}</td>
-                                    <td>
-                                        <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap ">
-                                        <a class="btn btn-outline-primary" href="{{ route('admin.houses.edit', $house) }}">Modifica</a>
-                                        <a class="btn btn-outline-primary" href="{{ route('admin.houses.show', $house) }}">Info</a>
-                                        @include('admin.houses.partials.delete_button')
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="mt-5 d-flex justify-content-center">
-                        {{ $houses->links('pagination::bootstrap-5') }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="row g-4">
-                
-                
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">Messages</div>
-                        
-                        <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Text</th>
-                                    <th scope="col">House</th>
-                                    {{-- <th scope="col">Sponsorship</th>
-                                    <th scope="col"></th> --}}
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($houses as $house)
-                                    {{-- @dump($house) --}}
-                                        <tr>
-                                            <th scope="row">{{ $loop->index+1}}</th>
-                                            {{-- <td>{{$house->messages->text}}</td> --}}
-                                            <td>{{$house->id}}</td>
-                                            {{-- <td>{!!$house->getSponsorship($houses_sponsorship)!!}</td>
-                                            <td>
-                                                <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap ">
-                                                <a class="btn btn-outline-primary" href="{{ route('admin.houses.edit', $house) }}">Modifica</a>
-                                                <a class="btn btn-outline-primary" href="{{ route('admin.houses.show', $house) }}">Info</a>
-                                                @include('admin.houses.partials.delete_button')
-                                                </div>
-                                            </td> --}}
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+    @else
+        <div class="row justify-content-center g-2">
+            
+            {{-- Table Houses --}}
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">My Houses</div>
+                    <div class="card-body overflow-auto">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Sponsorship</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($houses as $key => $house)
+                                {{-- @dump($house) --}}
+                                    <tr class="row-house" >
+                                        {{-- @dump($key) --}}
+                                        <th scope="row">{{ $houses->firstItem() + $loop->index }}</th>
+                                        <td id="house-title">{{$house->title}}</td>
+                                        <td>{!!$house->getMessagge()!!}</td>
+                                        <td>{!!$house->getSponsorship()!!}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap ">
+                                            <a class="btn btn-outline-primary" href="{{ route('admin.houses.edit', $house) }}">Modifica</a>
+                                            <a class="btn btn-outline-primary" href="{{ route('admin.houses.show', $house) }}">Info</a>
+                                            @include('admin.houses.partials.delete_button')
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="mt-5 d-flex justify-content-center">
+                            {{ $houses->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">Sponsorship</div>
-                        
-                        <div class="card-body">
+            </div>
+
+            {{-- Tables Messages and Sponsorship --}}
+            <div class="col-4">
+                <div class="row g-4">
+                    
+                    {{-- Messages --}}
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">Messages</div>
                             
+                            <div class="card-body overflow-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Text</th>
+                                        <th scope="col">House</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($messages as $message)
+                                            <tr>
+                                                <th scope="row">{{ $loop->index+1}}</th>
+                                                <td>{{$message->text}}</td>
+                                                <td>{{$message->id}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{-- Sponsorships --}}
+                    <div class="col-12">                    
+                        <div class="card">
+                            <div class="card-header">Sponsorship</div>                            
+                            <div class="card-body overflow-auto">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">House</th>
+                                        <th scope="col">Sponsorship</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($houseSponsorshipList as $house)
+                                            <tr>
+                                                <th scope="row">{{ $loop->index+1}}</th>
+                                                <td>{{$house->title}}</td>
+                                                @foreach ($house->sponsorships as $sponsorship)
+                                                <td>{{$sponsorship->name}}</td>
+                                                    
+                                                @endforeach
+                                            </tr>
+
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
 @endsection
 
@@ -134,4 +159,29 @@
             </div>
         </div>
     @endforeach
+    
+@endsection
+
+@section('scripts')
+    <script>
+        const elements = document.getElementsByClassName("row-house");
+        // element.addEventListener("click", myFunction());
+
+        let myFunction = function() {
+        let attribute = this.getAttribute("data-myattribute");
+        console.log(index);
+        };
+
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].addEventListener('click', myFunction, false);
+        }
+
+        // Array.prototype.forEach.call(elements, function (toggleExtra, index, element) {
+        //     toggleExtra.addEventListener('click', function () {
+        // console.log(index);
+        // console.log(element);
+        // })
+        // });
+    </script>
+    
 @endsection

@@ -48,13 +48,11 @@ class House extends Model
         $messages = $this->messages->toArray();
         return $messages ? "<i class='fa-solid fa-message'></i>" : null ;
     }  
-    public function getSponsorship($arraySearch){
-        foreach ($arraySearch as $value) {
-            if ($value->id == $this->id) {
+    public function getSponsorship(){        
+            if ($this->sponsorships->toArray()) {
                 return "<i class='fa-solid fa-star'></i>";
             } else {
-                return "ciao";
-            }
-        };
+                return null;
+            };
     }
 }
