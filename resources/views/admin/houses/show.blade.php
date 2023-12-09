@@ -83,7 +83,7 @@
       @foreach ($house->messages as $message)
       <div class="mb-4">
         <p><strong>E-mail Mittente:</strong> {{$message->email}}</p>
-        <p><strong>Testo messaggio:</strong> {{$message->text}}</p>
+        <p><strong>Testo messaggio:</strong> {!! wordwrap($message->text, 60 , "<br />\n", true) !!}</p>
       </div>
       <hr>
       @endforeach
