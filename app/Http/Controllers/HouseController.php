@@ -147,6 +147,7 @@ class HouseController extends Controller
             return view("admin.houses.edit", compact("house", "extras", "extra_house"));
 
         }
+
         return redirect()->route('admin.houses.index');
     }
 
@@ -166,6 +167,18 @@ class HouseController extends Controller
                 Storage::delete($house->cover_image);
             }
             $data['cover_image'] = Storage::put('uploads/houses/cover_image', $data['cover_image']);
+        };
+
+
+        if ($request->hasFile('image')) {
+            $images = $request->file('image');
+            foreach ($images as $image) {
+                $gallery = new Gallery;
+                $gallery->house_id = $house->id;
+                $path = $image->store('uploads/houses/gallery_images');
+                $gallery->fill(['image' => $path]);
+                $gallery->save();
+            }
         };
 
         $house->fill($data);
