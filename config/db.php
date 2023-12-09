@@ -1047,12 +1047,12 @@ return [
         ],
         [
             'price'=> 5.99,
-            'duration' => 72,
+            'duration' => 48,
             'name' => 'silver',
         ],
         [
             'price'=>9.99,
-            'duration' => 10,
+            'duration' => 72,
             'name' => 'gold',
         ],
     ],
