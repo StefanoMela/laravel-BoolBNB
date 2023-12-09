@@ -34,7 +34,7 @@ class HouseController extends Controller
         ->where('user_id', $user_id)
         ->paginate(12);
         foreach ($houses as $house) {
-            $house->description = strlen($house->description) > 100 ? substr($house->description, 0, 100) . '...' : $house->description;
+            $house->description = strlen($house->description) > 30 ? substr($house->description, 0, 30) . '...' : $house->description;
         }
         return view("admin.houses.index", compact("houses"));
     }
