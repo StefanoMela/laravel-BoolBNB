@@ -17,9 +17,7 @@ class GalleryController extends Controller
      */
     public function index(House $house)
     {
-        $house = House::find($house->id);
 
-        return view('admin.houses.gallery',['house' => $house]);
     }
 
     /**

@@ -1,9 +1,3 @@
-{{-- @if ($errors->any())
-<div id="popup_message" class="d-none" data-type="warning" data-message="Check errors"></div>
-@endif --}}
-
-
-
 <form action="{{ route($route, $house->id) }}" id="{{$idForm}}" method="POST" class="my-2"
     enctype="multipart/form-data">
     @method($methodRoute)
@@ -27,27 +21,10 @@
 
             </div>
 
-            {{-- Address --}}
-            {{-- <div class="form-outline mb-3">
-                <label for="address" class="form-label">Indirizzo {{$essential}}</label>
-                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                    name="address" value="{{ old('address',$house->address) }}">
-                @error('address')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-
-            </div> --}}
-
             <div class="form-outline mb-3">
                 <div id="address-element" class="form-control">
-
                     <label for="address" class="form-label">Indirizzo {{$essential}}</label>
                     <div id="address-element"></div>
-                    {{-- <input type="hidden" class="form-control @error('address') is-invalid @enderror" id="address"
-                        name="address" value="{{ old('address') }}"> --}}
-
                     @error('address')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -78,7 +55,7 @@
             <div class="form-outline mb-3">
                 <label for="image" class="form-label">Foto di galleria</label>
                 <input type="file" multiple class="form-control @error('image') is-invalid @enderror" id="image"
-                    name="image[]" onchange="previewImages(event)">
+                    name="image[]" onchange="previewGallery(event)">
                 @error('image')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -87,7 +64,7 @@
             </div>
             {{-- Image Preview Container --}}
             <div class="container">
-                <div id="imagePreviewContainer" class="d-flex nowrap gap-2"></div>
+                <div id="imagePreviewContainer" class="d-flex flex-wrap gap-2"></div>
             </div>
 
 
@@ -190,66 +167,61 @@
                 </div>
                 @enderror
             </div>
-
-
         </div>
 
         <div class="card-footer">
             {{-- BTNS send form and cancel --}}
             <div class="text-end my-2 d-flex justify-content-end gap-2">
-
                 <a href="{{ route('admin.houses.index')}}" class="btn btn-dark"><i
                         class="fa-solid fa-arrow-left"></i>&nbsp;Indietro</a>
                 <button type="submit" class="btn btn-success {{$btnClass}}"><i
                         class="fa-solid fa-save"></i>&nbsp;Salva</button>
-
                 @if($methodRoute == 'PATCH')
                 @include('admin.houses.partials.delete_button')
                 @endif
-
-
             </div>
-
-
-
             {{-- Required input --}}
             <div>
                 <p class="fs-6 fst-italic text-secondary ms-3">Sono contrassegnati con * i dati obbligatori.
                 </p>
             </div>
-
         </div>
 
-
         @include('admin.houses.partials.searchbar')
-
 </form>
 
 @section('scripts')
-{{-- @vite('resources/js/confirmDelete.js') --}}
 <script>
-    function previewImages(event) {
-        const previewContainer = document.getElementById('imagePreviewContainer');
+    // PROFILE PIC PREVIEW
+const previewImg = document.getElementById('cover_image_preview');
+const inputFile = document.getElementById('cover_image');
+
+inputFile.addEventListener('change', function() {
+const [file] = this.files
+previewImg.src = URL.createObjectURL(file);
+});
+
+
+// // GALLERY PICS PREVIEW
+function previewGallery(event) {
+  const previewContainer = document.getElementById('imagePreviewContainer');
         
-        const files = event.target.files;
-        for (const file of files) {
-            const reader = new FileReader();
+  const files = event.target.files;
+    for (const file of files) {
+      const reader = new FileReader();
+        reader.onload = function (e) {
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'image-container';
 
-            reader.onload = function (e) {
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'image-container';
-                
-                const img = document.createElement('img');
-                img.src = e.target.result;
+        const img = document.createElement('img');
+        img.src = e.target.result;
 
-                imgContainer.appendChild(img);
-                previewContainer.appendChild(imgContainer);
-            };
-
-            reader.readAsDataURL(file);
+       imgContainer.appendChild(img);
+      previewContainer.appendChild(imgContainer);
+    };
+    reader.readAsDataURL(file);
         }
     }
-
 </script>
 
 @endsection
