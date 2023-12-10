@@ -129,10 +129,12 @@ class HouseController extends Controller
 
         $sponsorship = $house->sponsorships->last();
         $house_sponsorship = DB::table('house_sponsorship')->where('house_id', $house->id)->orderByDesc('id')->first();
-        // dd($sponsorships);
-        $date = new DateTimeImmutable($house_sponsorship->end_date);
-        // $date->format('Y-m-d H:i:s');
-        $house_sponsorship->end_date = $date->format('Y-m-d H:i');
+        // dd($house_sponsorship);
+        if ($house_sponsorship) {
+            $date = new DateTimeImmutable($house_sponsorship->end_date);
+            $house_sponsorship->end_date = $date->format('Y-m-d H:i');
+        }
+
         return view('admin.houses.show', compact('house', 'user', 'extras', 'gallery_images', 'sponsorship', 'house_sponsorship'));
     }
 
