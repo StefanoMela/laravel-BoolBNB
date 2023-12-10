@@ -76,25 +76,30 @@
                             <div class="card-header">Messages</div>
                             
                             <div class="card-body overflow-auto">
+                                @if (!$messages)
+                                    <p>Nessun messaggio</p>
+                                @else
+                                    
                                 <table class="table">
                                     <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Text</th>
-                                        <th scope="col">House</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Text</th>
+                                            <th scope="col">House</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
 
                                         @foreach ($messages as $message)                                        
                                             <tr>
                                                 <th scope="row">{{ $loop->index+1}}</th>
-                                                <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{$message->text}}</a></td>
+                                                <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{strlen($message->text) > 10 ? substr($message->text, 0, 10) . "..." : $message->text}}</a></td>
                                                 <td>{{$message->id}}</td>
                                             </tr>                                        
-                                        @endforeach
+                                            @endforeach
                                     </tbody>
                                 </table>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -104,28 +109,33 @@
                         <div class="card">
                             <div class="card-header">Sponsorship</div>                            
                             <div class="card-body overflow-auto">
+                                @if (!$houseSponsorshipList->toArray())
+                                    <p>Nessuna casa sponsorizzata</p>
+                                
+                                @else
                                 <table class="table">
                                     <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">House</th>
-                                        <th scope="col">Sponsorship</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">House</th>
+                                            <th scope="col">Sponsorship</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($houseSponsorshipList as $house)
-                                            <tr>
-                                                <th scope="row">{{ $loop->index+1}}</th>
-                                                <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{$house->title}}</a></td>
-                                                @foreach ($house->sponsorships as $sponsorship)
-                                                <td>{{$sponsorship->name}}</td>
-                                                    
-                                                @endforeach
-                                            </tr>
-
+                                        <tr>
+                                            <th scope="row">{{ $loop->index+1}}</th>
+                                            <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{$house->title}}</a></td>
+                                            @foreach ($house->sponsorships as $sponsorship)
+                                            <td>{{$sponsorship->name}}</td>
+                                            
+                                            @endforeach
+                                        </tr>
+                                        
                                         @endforeach
                                     </tbody>
                                 </table>
+                                @endif
                                 
                             </div>
                         </div>
