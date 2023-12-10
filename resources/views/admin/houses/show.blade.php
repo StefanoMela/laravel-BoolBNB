@@ -34,6 +34,23 @@
       <p><strong>Intestatario:</strong> {{ $user->name }} {{ $user->last_name }}</p>
       <p><strong>Indirizzo: </strong>{{ $house->address }}</p>
     </div>
+    {{-- LISTA MESSAGGI --}}
+    @if ($house->messages->toArray())
+      <div class="col-md-6 my-4 border p-4">
+        <h4 class="mb-5">Lista messaggi ricevuti:</h4>
+        @foreach ($house->messages as $message)
+        <div class="mb-4">
+          <p><strong>E-mail Mittente:</strong> {{$message->email}}</p>
+          <p><strong>Testo messaggio:</strong> {!! wordwrap($message->text, 60 , "<br />\n", true) !!}</p>
+        </div>
+        <hr>
+        @endforeach
+      </div>
+    @else
+      <div class="col-md-6 my-4 border p-4 rounded">
+        <h4>Nessun messaggio ricevuto</h4>
+      </div>
+    @endif
 
   </div>
   <div class="row">
@@ -56,43 +73,29 @@
         @endforeach
       </div>
 
-      <div class="col-md-6">
-
-        <p>
-          <strong>Promozione in Corso:</strong>
-          @if ($house_sponsorship && $sponsorship)
-        <div class="card-deck justify-content-around text-center">
-          <h2 class="card-title mb-2">{{$sponsorship->name}}</h2>
-          <h2 class="card-title mb-2">€ {{$sponsorship->price}}</h2>
-          <p>La tua promozione scadrà il: {{$house_sponsorship->end_date}}</p>
-        </div>
+    </div>
+    <div class="col-md-6">
+      <p>
+        <strong>Promozione in Corso:</strong>
+        @if ($house_sponsorship && $sponsorship)
+          <div class="card">
+            <div class="justify-content-around text-center">
+              <h2 class="card-header mb-2 text-capitalize">{{$sponsorship->name}}</h2>
+              <h2 class="card-text mb-2">€ {{$sponsorship->price}}</h2>
+              <p>La tua promozione scadrà il: 
+                <b>{{$house_sponsorship->end_date}}</b>
+              </p>
+            </div>
+          </div>
         @else
-        <span>Non sponsorizzato</span>
-        <div>
-          <a href="{{ route('admin.houses.sponsorship', $house) }}" class="btn btn-dark">Sponsorizza il tuo
+          <span>Non sponsorizzato</span>
+          <div>
+            <a href="{{ route('admin.houses.sponsorship', $house) }}" class="btn btn-dark">Sponsorizza il tuo
             appartamento</a>
-        </div>
+          </div>
         @endif
-        </p>
-      </div>
+      </p>
     </div>
-    {{-- LISTA MESSAGGI --}}
-    @if ($house->messages->toArray())
-    <div class="col-md-6 my-4 border p-4">
-      <h4 class="mb-5">Lista messaggi ricevuti:</h4>
-      @foreach ($house->messages as $message)
-      <div class="mb-4">
-        <p><strong>E-mail Mittente:</strong> {{$message->email}}</p>
-        <p><strong>Testo messaggio:</strong> {!! wordwrap($message->text, 60 , "<br />\n", true) !!}</p>
-      </div>
-      <hr>
-      @endforeach
-    </div>
-    @else
-    <div class="col-md-6 my-4 border p-4 rounded">
-      <h4>Nessun messaggio ricevuto</h4>
-    </div>
-    @endif
   </div>
 </div>
 @endsection

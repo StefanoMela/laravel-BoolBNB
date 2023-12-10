@@ -8,6 +8,7 @@ use App\Models\Extra;
 use App\Models\Gallery;
 use App\Models\House;
 use App\Models\Sponsorship;
+use DateTimeImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -129,6 +130,9 @@ class HouseController extends Controller
         $sponsorship = $house->sponsorships->last();
         $house_sponsorship = DB::table('house_sponsorship')->where('house_id', $house->id)->orderByDesc('id')->first();
         // dd($sponsorships);
+        $date = new DateTimeImmutable($house_sponsorship->end_date);
+        // $date->format('Y-m-d H:i:s');
+        $house_sponsorship->end_date = $date->format('Y-m-d H:i');
         return view('admin.houses.show', compact('house', 'user', 'extras', 'gallery_images', 'sponsorship', 'house_sponsorship'));
     }
 
