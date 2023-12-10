@@ -81,7 +81,7 @@
           <div class="card">
             <div class="justify-content-around text-center">
               <h2 class="card-header mb-2 text-capitalize">{{$sponsorship->name}}</h2>
-              <h2 class="card-text mb-2">€ {{$sponsorship->price}}</h2>
+              {{-- <h2 class="card-text mb-2">€ {{$sponsorship->price}}</h2> --}}
               <p>La tua promozione scadrà il: 
                 <b>{{$house_sponsorship->end_date}}</b>
               </p>
