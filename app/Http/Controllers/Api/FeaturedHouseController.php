@@ -52,13 +52,14 @@ class FeaturedHouseController extends Controller
     {
         
         $house = House::select('id','user_id','title','cover_image','description', 'rooms','sq_meters','beds','bathrooms','address', 'longitude', 'latitude')
-            ->where('id', $id)->with('user:id,name,last_name','extras')->first();
+            ->where('id', $id)->with('user:id,name,last_name','extras','galleries')->first();
             // modifica path immagine per farla leggere correttamente da vue
             
             if(!$house) 
             abort(404, 'House not found');
         
         $house->cover_image = $house->getAbsUriImage();
+
         // $house = House::find($id);
 
         return response()->json($house);

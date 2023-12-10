@@ -152,7 +152,7 @@ class SearchController extends Controller
             }
         }
 
-        $houses = $houses_query->with('extras:id,name,color,icon,icon_vue')
+        $houses = $houses_query->with('extras:id,name,color,icon,icon_vue','galleries')
         ->orderBy('id', 'desc')
         ->paginate(12);
 
