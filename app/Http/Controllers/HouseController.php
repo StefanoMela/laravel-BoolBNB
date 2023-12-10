@@ -106,7 +106,7 @@ class HouseController extends Controller
         
         if(Arr::exists($data, "extras")) $house->extras()->attach($data["extras"]);
 
-        return redirect()->route('admin.houses.index', $house);
+        return redirect()->route('admin.houses.show', $house);
         
     }
 
@@ -190,7 +190,7 @@ class HouseController extends Controller
             $house->extras()->detach();
         
 
-        return redirect()->route('admin.houses.index', $house);
+        return redirect()->route('admin.houses.show', $house);
     }
 
     /**
