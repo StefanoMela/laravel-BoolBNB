@@ -25,7 +25,7 @@
             </div>
             
             {{-- Table Houses --}}
-            <div class="col-8">
+            <div class="col-12 col-lg-8">
                 <div class="card">
                     <div class="card-header">My Houses</div>
                     <div class="card-body overflow-auto">
@@ -34,8 +34,8 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Sponsorship</th>
+                                <th class="d-none d-lg-table-cell" scope="col">Message</th>
+                                <th class="d-none d-lg-table-cell" scope="col">Sponsorship</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -46,8 +46,8 @@
                                         {{-- @dump($key) --}}
                                         <th scope="row">{{ $houses->firstItem() + $loop->index }}</th>
                                         <td id="house-title">{{$house->title}}</td>
-                                        <td>{!!$house->getMessagge()!!}</td>
-                                        <td>{!!$house->getSponsorship()!!}</td>
+                                        <td class="d-none d-lg-table-cell">{!!$house->getMessagge()!!}</td>
+                                        <td class="d-none d-lg-table-cell">{!!$house->getSponsorship()!!}</td>
                                         <td>
                                             <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap ">
                                             <a class="btn btn-outline-primary" href="{{ route('admin.houses.edit', $house) }}">Modifica</a>
@@ -67,7 +67,7 @@
             </div>
 
             {{-- Tables Messages and Sponsorship --}}
-            <div class="col-4">
+            <div class="col-12 col-lg-4">
                 <div class="row g-4">
                     
                     {{-- Messages --}}
@@ -90,11 +90,12 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($messages as $message)                                        
+                                        @foreach ($messages as $message)     
+                                        {{-- @dump($message)                                    --}}
                                             <tr>
                                                 <th scope="row">{{ $loop->index+1}}</th>
                                                 <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{strlen($message->text) > 10 ? substr($message->text, 0, 10) . "..." : $message->text}}</a></td>
-                                                <td>{{$message->id}}</td>
+                                                <td>{{$message->title}}</td>
                                             </tr>                                        
                                             @endforeach
                                     </tbody>
@@ -127,7 +128,7 @@
                                             <th scope="row">{{ $loop->index+1}}</th>
                                             <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{$house->title}}</a></td>
                                             @foreach ($house->sponsorships as $sponsorship)
-                                            <td>{{$sponsorship->name}}</td>
+                                            <td class="text-capitalize">{{$sponsorship->name}}</td>
                                             
                                             @endforeach
                                         </tr>

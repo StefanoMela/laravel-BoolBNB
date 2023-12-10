@@ -82,9 +82,9 @@
             </div>
 
             {{-- List rooms-bathromms- ecc... --}}
-            <div class="row">
+            <div class="row row-cols-md-4 row-cols-2">
                 {{-- Rooms --}}
-                <div class="col-4">
+                <div class="col">
                     <div class="mb-3">
                         <label for="rooms" class="form-label">Stanze {{$essential}}</label>
                         <input type="number" min="1" class="form-control @error('rooms') is-invalid @enderror"
@@ -99,7 +99,7 @@
                 </div>
 
                 {{-- M2 --}}
-                <div class="col-4">
+                <div class="col">
                     <div class="mb-3">
                         <label for="sq_meters" class="form-label">Metri quadri {{$essential}}</label>
                         <input type="number" min="10" step="5"
@@ -115,7 +115,7 @@
                 </div>
 
                 {{-- Beds --}}
-                <div class="col-4">
+                <div class="col">
                     <div class="mb-3">
                         <label for="beds" class="form-label">Letti {{$essential}}</label>
                         <input type="number" min="1" class="form-control @error('beds') is-invalid @enderror" id="beds"
@@ -148,7 +148,7 @@
             <div>
                 <label for="extras" class="form-label">Servizi aggiuntivi {{$essential}}</label>
                 <div class="form-check @error('extras') is-invalid @enderror">
-                    <div class="row mt-3">
+                    <div class="row row-cols-md-4 row-cols-2 mt-3">
                         @foreach ($extras as $extra)
                         <div class="col">
                             <input type="checkbox" class="form-check-input" name="extras[]" id="extra-{{$extra->id}}"
