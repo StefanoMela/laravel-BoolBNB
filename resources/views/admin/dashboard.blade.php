@@ -19,6 +19,10 @@
         
     @else
         <div class="row justify-content-center g-2">
+            <div class="d-flex justify-content-between mb-4">
+                <a class="btn btn-outline-success" href="{{ route('admin.houses.create') }}">Aggiungi una nuova casa</a>
+                <a class="btn btn-outline-danger" href="{{ route('admin.houses.trash.index') }}">Vedi cestino</a>
+            </div>
             
             {{-- Table Houses --}}
             <div class="col-8">
@@ -82,12 +86,12 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($messages as $message)
+                                        @foreach ($messages as $message)                                        
                                             <tr>
                                                 <th scope="row">{{ $loop->index+1}}</th>
-                                                <td>{{$message->text}}</td>
+                                                <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{$message->text}}</a></td>
                                                 <td>{{$message->id}}</td>
-                                            </tr>
+                                            </tr>                                        
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -112,7 +116,7 @@
                                         @foreach ($houseSponsorshipList as $house)
                                             <tr>
                                                 <th scope="row">{{ $loop->index+1}}</th>
-                                                <td>{{$house->title}}</td>
+                                                <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{$house->title}}</a></td>
                                                 @foreach ($house->sponsorships as $sponsorship)
                                                 <td>{{$sponsorship->name}}</td>
                                                     

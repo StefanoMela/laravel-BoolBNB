@@ -161,11 +161,6 @@ class SearchController extends Controller
               $house->cover_image = Storage::url($house->cover_image);
          };
 
-        foreach($houses as $house){
-              $house->description = $house->getAbstract(100);
-              $house->cover_image = Storage::url($house->cover_image);
-         };
-
         return response()->json($houses);
     }
 }
