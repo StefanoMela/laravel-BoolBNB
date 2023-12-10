@@ -78,12 +78,12 @@
     </div>
     {{-- LISTA MESSAGGI --}}
     @if ($house->messages->toArray())
-    <div class="col-md-6 my-4 border p-4">
+    <div class="col-md-5 col-sm-4 my-4 border p-4">
       <h4 class="mb-5">Lista messaggi ricevuti:</h4>
       @foreach ($house->messages as $message)
       <div class="mb-4">
         <p><strong>E-mail Mittente:</strong> {{$message->email}}</p>
-        <p><strong>Testo messaggio:</strong> {!! wordwrap($message->text, 60 , "<br />\n", true) !!}</p>
+        <p><strong>Testo messaggio:</strong> {!! wordwrap($message->text, 30 , "<br />\n", true) !!}</p>
       </div>
       <hr>
       @endforeach
