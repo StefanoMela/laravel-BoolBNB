@@ -126,7 +126,7 @@
                                         @foreach ($houseSponsorshipList as $house)
                                         <tr>
                                             <th scope="row">{{ $loop->index+1}}</th>
-                                            <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $message->house_id)}}">{{$house->title}}</a></td>
+                                            <td><a class="text-decoration-none text-dark" href="{{ route('admin.houses.show', $house->id)}}">{{$house->title}}</a></td>
                                             @foreach ($house->sponsorships as $sponsorship)
                                             <td class="text-capitalize">{{$sponsorship->name}}</td>
                                             
